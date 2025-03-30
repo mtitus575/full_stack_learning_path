@@ -1,0 +1,55 @@
+html {
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+}
+
+.container {
+    background-color: rgb(138, 100, 176);
+
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 5.3rem 41rem 39.68rem 35.5rem 1.875rem 3.875rem ;
+    
+
+}
+header {
+    grid-row: 1 / 2;
+    grid-column: 1 / 3;
+    border: 2px solid black;
+    display: inline-flex;
+}
+
+ul {
+    list-style: none;
+    
+}
+
+.background-img {
+    grid-row: 2 / 3;
+    grid-column: 1 / span 2;
+    border: 2px solid rgb(206, 175, 175);
+}
+
+.cameras {
+    grid-row: 3 / 4;
+    grid-column: 1 / span 2;
+    border: 2px solid rgb(234, 111, 111);
+}
+
+.filter-container {
+    grid-row: 4 / 5;
+    grid-column: 1 / span 2;
+    border: 2px solid rgb(92, 187, 48);
+}
+
+.bottom-txt{
+    grid-row: 5 / 6;
+    grid-column: 1 / span 2;
+    border: 2px solid rgb(241, 206, 150);
+}
+
+footer {
+    grid-row: 6 / 7;
+    grid-column: 1 / 3;
+    border: 2px solid black;
+}
