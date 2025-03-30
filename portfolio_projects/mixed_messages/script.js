@@ -19,3 +19,6 @@ const piscesHoroscopes = [];
 //Actions for each Horoscope:
 
 
+
+
+// Create a object to hold all the messages as nested arrays.
