@@ -1,0 +1,68 @@
+.heading {
+    font-family: "lobster", Arial, Helvetica, sans-serif;
+}
+
+.main-container {
+    border: 2px solid lightgrey;
+    padding: 20px;
+    margin: 30px auto;
+}
+
+h2 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-left: 30px;
+    margin-top: auto;
+}
+/*Coloured box styles*/
+.color-box {
+    border: 1px solid rgb(178, 170, 170);
+    height: 100px;
+    width: 300px;
+    display: inline-block;
+    border-radius: 10px;
+    margin-left: 80px;
+    margin-bottom: 30px;
+    text-align: center;
+    }
+/*Coloured box colours*/
+#box1 {
+    background-color: #a38e3b;
+}
+#box2 {
+    background-color: #63f5b5;
+}
+#box3 {
+    background-color: #8df563;
+}
+#box4 {
+    background-color: #88f1ff;
+}
+/*Font section*/
+
+.font-title {
+    text-decoration: underline;
+}
+
+.font-main {
+    line-height: 0.5;
+    padding-left: 10px;
+    display: inline-block;
+    }
+#bold {
+    font-weight: bold;
+    }
+#italics {
+     font-style: italic;
+    }
+.Sans-serif p {
+    font-family: sans-serif;
+}
+.Times-New-Roman {
+    font-family: 'Times New Roman', Times, serif;
+}
+.Lobster {
+    font-family: "lobster";
+}
+.text-style {
+    margin-left: 5px;
+}

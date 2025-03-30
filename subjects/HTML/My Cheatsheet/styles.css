@@ -1,0 +1,36 @@
+* {
+    background-color: #b5d3f4;
+    font-family: monospace;
+}
+
+h1 {
+    text-align: center;
+    border: 2px solid rgb(95, 120, 244);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    width: auto;
+    background-color: aquamarine;
+}
+.topic {
+    text-align: center;
+    text-decoration: underline;
+}
+/*This is for the table*/
+table, tr, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+   /* width: 650px;*/
+    margin: 0 auto;
+    padding: 5px;
+
+}
+/*This is for heading section*/
+th{
+    text-align: left;
+    background-color: aquamarine;
+}
+.name {
+    width:fit-content;
+}
+

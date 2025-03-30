@@ -1,0 +1,22 @@
+
+.hero{
+    background-color: blueviolet;
+    background-image: url(./images/image1.webp);
+    color: rgb(4, 252, 4);
+    text-align: center;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+
+
+}
+
+.container{
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1px;
+    padding-right: 1px;
+
+}
