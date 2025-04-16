@@ -1,0 +1,74 @@
+/* * {
+    font-size: 1rem;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}; */
+
+/* Grid area setup */
+body {
+    display: grid;
+    grid-template-areas: 
+        "header main main main"
+        "header main main main"
+        "header about about about"
+        "header resume resume resume"
+        "header port port port"
+        "header services services services"
+        " header contact contact contact"
+        ;
+    
+}
+header {
+    border: 1px black solid;
+    background-color: rgb(136, 227, 197);
+    grid-area: header;
+}
+
+main {
+    border: 1px rgb(189, 22, 22) solid;
+    background-color: aquamarine;
+    grid-area: main;
+
+}
+.about {
+    border: 1px rgb(189, 22, 22) solid;
+    background-color: rgb(147, 244, 212);
+    grid-area: about;
+}
+.resume {
+    border: 1px rgb(189, 22, 22) solid;
+    background-color: rgb(133, 220, 191);
+    grid-area: resume;
+}
+.portfolio {
+    border: 1px rgb(189, 22, 22) solid;
+    background-color: rgb(106, 241, 196);
+    grid-area: port;
+}
+.services {
+    border: 1px rgb(189, 22, 22) solid;
+    background-color: rgb(158, 239, 212);
+    grid-area: services;
+}
+.contact {
+    border: 1px rgb(189, 22, 22) solid;
+    background-color: rgb(151, 242, 212);
+    grid-area: contact;
+}
+
+/* Styling for sidebar: */
+header {
+    display: flex;
+    flex-direction: column;
+}
+
+#profile-container {
+    border: 1px black solid;
+    border-radius: 50%;
+    height: 10rem;
+    width: 10rem;
+    background-image: url("/media/placeholder_img.jpg");
+    background-position: 11rem;
+    background-size: cover;
+    position: relative;
+    
+}
