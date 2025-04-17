@@ -19,6 +19,10 @@ body {
 }
 header {
     grid-area: aside;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    min-width: 16.7%; 
    
 }
 
@@ -75,7 +79,7 @@ header {
     margin-top: 1rem;
 }
 
-h1 {
+.sidebar-name {
     font-size: 2rem;
     font-weight: 600;
 }
@@ -97,18 +101,34 @@ h1 {
     font-weight: 300;
     list-style: none; /*Removed bullet points from list items*/
     margin: 2rem 0;
-    font-size: 1.5rem;
     cursor: pointer;
+
 }
 
-#side-nav > li > img  {
+#side-nav > li > img  { /*This selector setup allows acces to child elements of a specific parent*/
     width: 1.4rem;
     margin-right: 1rem;
+    
 }
 
 .main {
-    
+    height: 100vh;
+    background-image: url("/media/placeholder_img.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-.about {
-    
+
+.overlay { /*Reasearch this code*/
+    border-image: linear-gradient(hsla(240, 22%, 82%, 0.6), hsl(0, 1%, 17%)) fill 1;
+}
+
+.name-container {
+    position: relative;
+    top: 40%;
+    left: 10%;
+}
+.main-name {
+    color: rgb(28, 14, 14);
+    font-size: 4rem;
+    margin-bottom: 0;
 }
