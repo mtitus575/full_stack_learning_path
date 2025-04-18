@@ -160,8 +160,9 @@ h2::after { /*This pseudo selector creates an underline that is smaller than the
     margin-left: 3rem;
 }
 
-.about-list {
-    /*STOPPED HERE:
-    1. Make the list sit next to each other, 2 columns of 3 rows.
-    2. Move on to SKILLS;*/
+/*Styling for skills section*/
+.skills-media {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
 }
