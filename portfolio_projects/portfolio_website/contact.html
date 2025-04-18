@@ -38,12 +38,56 @@
             <p>Have an interesting project? I would love to hear about it!</p>
         </section>
         <br>
-        <section>
-            // This section is to be DELETED //
-            <br>
-            // ADD a form here that will collect user info, query and email it to me//
-        </section>
-        
+        <div class="contact-main">
+            <section class="details-container">
+                <ul class="contact-list">
+                    <li>
+                        <img src="" alt="">
+                        <h4>Address</h4>
+                        <p>A108 Adam Street, New York, NY 535022</p>
+                    </li>
+                    <li>
+                        <img src="" alt="">
+                        <h4>Contact Us</h4>
+                        <p>+123 456 7890</p>
+                    </li>
+                    <li>
+                        <img src="" alt="">
+                        <h4>Email Us</h4>
+                        <p>info@example.com</p>
+                    </li>
+                </ul>
+                <iframe class="office-location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19866.46165587983!2d-0.14369130134583205!3d51.50757052910295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604b1b1d92a1b%3A0x48c4736f9d4280a8!2sWorkspace%C2%AE%20%7C%20Cargo%20Works!5e0!3m2!1sen!2suk!4v1745006468922!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </section>
+            <section>
+                <div class="form-container">            
+                    <form action="/form.html" method="post">
+                        <div class="name-mail-container">
+                            <div>
+                                <label for="name">Your Name:</label>
+                                <input id="name" type="text" name="name" size="30" required>
+                            </div>
+                            <div>
+                                <label for="email">Your Email:</label>
+                                <input id="email" type="email" name="email" size="30" required>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="subject">
+                            <label for="subject">Subject:</label>
+                            <input id="subject" type="text" name="subject" size="70" required>
+                        </div>
+                        <br>
+                        <div class="message">
+                            <label for="message">Message:</label>
+                            <textarea id="message" type="text" name="message" cols="69" rows="10" required></textarea>
+                        </div>
+                        <br>
+                        <input class="form-button" type="Submit" value="Send Message">
+                    </form>
+                </div>
+            </section>
+        </div>
     </main>
     
 </body>

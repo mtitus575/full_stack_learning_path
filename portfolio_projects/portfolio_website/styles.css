@@ -114,7 +114,7 @@ header {
 }
 
 .overlay { /*Reasearch this code*/
-    border-image: linear-gradient(hsla(240, 22%, 82%, 0.6), hsl(0, 1%, 17%)) fill 1;
+    border-image: linear-gradient(hsla(240, 13%, 80%, .5), hsl(0, 1%, 17%, 0.4)) fill 1;
 }
 
 .name-container {
@@ -241,5 +241,92 @@ h2::after { /*This pseudo selector creates an underline that is smaller than the
 }
 #img3:active {
     box-shadow: .05rem .05rem .5rem;
+    scale: 1;
+}
+
+
+/*Contact page styling:*/
+.contact-main {
+ display: inline-flex;
+}
+.details-container {
+    border-radius: 7%;
+    box-shadow:  0rem 0rem .4rem  ;
+    margin-left: 1rem;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.contact-list > li {
+    list-style: none;
+}
+
+.contact-list {
+    display: inline-flex;
+    flex-direction: column;
+    margin-bottom: 0;
+}
+
+.contact-list > li > h4 {
+    font-size: large;
+    margin-bottom: 0;
+}
+
+.contact-list > li > p {
+    margin-top: 0 ;
+}
+
+.office-location {
+    margin: 1.5rem;
+    
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: column;
+}
+.form-container {
+    border-radius: 7%;
+    box-shadow:  0rem 0rem .4rem;
+    border: 1px solid;
+    width: 40rem;
+    margin-left: 3rem;
+}
+
+.name-mail-container {
+   display: flex;
+   justify-content: space-around;
+
+}
+
+.name-mail-container > div, .subject, .message {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.subject, .message {
+    margin-left: 3.5rem;
+    
+}
+
+label {
+    margin: 1rem 0;
+}
+
+.form-button {
+    font-weight: 700;
+    margin: 2rem 45%;
+    height: 2rem;
+    background: rgb(200, 166, 233);
+    border: .1rem;
+    border-radius: 10%;
+    box-shadow:  0rem 0rem .2rem;
+}
+
+.form-button:hover {
+    scale: 1.01;
+}
+
+.form-button:active {
     scale: 1;
 }
