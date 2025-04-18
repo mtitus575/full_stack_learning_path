@@ -190,6 +190,7 @@ h2::after { /*This pseudo selector creates an underline that is smaller than the
     width: 20rem;
     margin: 1rem 1rem;
     border-radius: 1rem;
+    cursor: pointer;
 }
 
 #img1 {
