@@ -63,8 +63,8 @@ header {
     border-radius: 50%;
     height: 10rem;
     width: 10rem;
-    background-image: url("/media/placeholder_img.jpg");
-    background-position: 11rem; /*positions the current image to have the guy visible*/
+    background-image: url("/media/IMG_20220704_114658.jpg");
+    background-position: 0rem; /*positions the current image to have the guy visible*/
     background-size: cover;
     margin-top: 1rem;
 }
@@ -107,9 +107,10 @@ header {
 /*Banner page styling*/
 .main {
     height: 100vh;
-    background-image: url("/media/placeholder_img.jpg");
+    background-image: url("/media/IMG_20220704_115122.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    transform: scaleX(-1); /*This flips the image on the X axis*/
 }
 
 .overlay { /*Reasearch this code*/
@@ -119,13 +120,20 @@ header {
 .name-container {
     position: relative;
     top: 40%;
-    left: 10%;
+    right: 10%;
     color: aliceblue;
+    transform: scaleX(-1);
 }
 .main-name {
     color: rgb(28, 14, 14);
     font-size: 4rem;
     margin-bottom: 0;
+}
+
+.photo {
+    height: 25rem;
+    border-radius: 50%;
+    
 }
 
 /*Styling ABOUT section:*/
@@ -197,6 +205,15 @@ h2::after { /*This pseudo selector creates an underline that is smaller than the
     background-image: url("/media/port_html_cheatsheet.jpg");
     background-size:contain;
     background-repeat: no-repeat;
+    background-position: 50%;
+}
+#img1:hover {
+    box-shadow: .25rem .25rem 1rem;
+    scale: 1.01;
+}
+#img1:active {
+    box-shadow: .05rem .05rem .5rem;
+    scale: 1;
 }
 
 #img2 {
@@ -204,9 +221,25 @@ h2::after { /*This pseudo selector creates an underline that is smaller than the
     background-size:contain;
     background-repeat: no-repeat;
 }
+#img2:hover {
+    box-shadow: .25rem .25rem 1rem;
+    scale: 1.01;
+}
+#img2:active {
+    box-shadow: .05rem .05rem .5rem;
+    scale: 1;
+}
 
 #img3 {
     background-image: url("/media/port_number_guesser.jpg");
     background-size:contain;
     background-repeat: no-repeat;
+}
+#img3:hover {
+    box-shadow: .25rem .25rem 1rem;
+    scale: 1.01;
+}
+#img3:active {
+    box-shadow: .05rem .05rem .5rem;
+    scale: 1;
 }
