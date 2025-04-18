@@ -249,9 +249,9 @@ h2::after { /*This pseudo selector creates an underline that is smaller than the
 .contact-main {
  display: inline-flex;
 }
-.details-container {
+.details-container, .form-container {
     border-radius: 7%;
-    box-shadow:  0rem 0rem .4rem  ;
+    box-shadow:  0rem 0rem .4em  ;
     margin-left: 1rem;
     display: inline-flex;
     flex-direction: column;
@@ -286,9 +286,6 @@ h2::after { /*This pseudo selector creates an underline that is smaller than the
     flex-direction: column;
 }
 .form-container {
-    border-radius: 7%;
-    box-shadow:  0rem 0rem .4rem;
-    border: 1px solid;
     width: 40rem;
     margin-left: 3rem;
 }
