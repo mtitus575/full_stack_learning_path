@@ -165,3 +165,47 @@ h2::after { /*This pseudo selector creates an underline that is smaller than the
     display: flex;
     justify-content: space-around;
 }
+
+/*Styling for Portfolio section:*/
+.portfolio > ul {
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+}
+
+.portfolio > ul > li {
+    list-style: none;    
+    margin: 0 1rem;
+    cursor: pointer;
+}
+
+.port-container {
+    display: flex;
+    justify-content: center;
+}
+
+.port-img {
+    border: 0.1rem solid rgb(202, 202, 202);
+    height: 20rem;
+    width: 20rem;
+    margin: 1rem 1rem;
+    border-radius: 1rem;
+}
+
+#img1 {
+    background-image: url("/media/port_html_cheatsheet.jpg");
+    background-size:contain;
+    background-repeat: no-repeat;
+}
+
+#img2 {
+    background-image: url("/media/port_biltong.jpg");
+    background-size:contain;
+    background-repeat: no-repeat;
+}
+
+#img3 {
+    background-image: url("/media/port_number_guesser.jpg");
+    background-size:contain;
+    background-repeat: no-repeat;
+}
