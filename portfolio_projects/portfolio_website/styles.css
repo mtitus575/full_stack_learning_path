@@ -210,6 +210,27 @@ h2::after { /*This pseudo selector creates an underline that is smaller than the
     margin: 1rem 1rem;
     border-radius: 1rem;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+.imgInfoBox {
+    height: 25rem;
+    width: 25rem;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(200, 166, 233);
+    opacity: 90%;
+    display: none;
+}
+
+.imgInfoBox > p {
+    margin-left: 1rem;
+
 }
 
 #img1 {
@@ -338,3 +359,21 @@ label {
 .form-button:active {
     scale: 1;
 }
+
+/*Adding interactivity to portfolio clickable areas*/
+.all:hover {
+    text-decoration: underline;
+}
+
+.sites:hover {
+    text-decoration: underline;
+}
+
+.apps:hover {
+    text-decoration: underline;
+}
+
+.all:active {
+    text-decoration: none;
+}
+/* stopped here, need to continue active pseudoclasses */

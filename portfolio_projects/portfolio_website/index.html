@@ -61,7 +61,7 @@
         </section>
         <section class="skills">
             <h2>Skills</h2>
-            <p>I am proficient in the following skills:</p>
+            <p>I am proficient in the following technologies:</p>
             <ul class="skills-media">
                 <li><img src="media/skills_html5.png" alt="html logo"></li>
                 <li><img src="media/skills_css3.png" alt="css logo"></li>
@@ -73,15 +73,23 @@
         <section class="portfolio" id="portfolio">
             <h2>Portfolio</h2>
             <p>These are some of my favorite projects as a web developer.</p>
-            <ul>
-                <li>ALL</li>
-                <li>WEBSITES</li>
-                <li>APPS</li>
+            <ul class="port-nav">
+                <li class="all" id="all">ALL</li>
+                <li class="sites" id="sites">WEBSITES</li>
+                <li class="apps" id="apps">APPS</li>
             </ul>
             <div class="port-container">
-                <div class="port-img" id="img1"></div>
-                <div class="port-img" id="img2"></div>
-                <div class="port-img" id="img3"></div>
+                <div class="port-img" id="img1">
+                    <span class="imgInfoBox" id="img1Info">
+                        <p>My first HTML reference sheet was made with HTML and basic CSS styling.</p>
+                    </span>
+                </div>
+                <div class="port-img" id="img2">
+                    <span class="imgInfoBox" id="img2Info">This store front website was built to seel biltong. A South African food snack that is packed full of protein and lean fats. <br><br> The program was built with HTML and inteactive CSS for a amazing user experience.</span>
+                </div>
+                <div class="port-img" id="img3">
+                    <span class="imgInfoBox" id="img3Info">My first JavaScript game! <br><br> This was an exciting one to make. It challanged my newly developed JavaScript knowledge and allows amazing practice implementing JS syntax. <br><br> You compete against the program to see who guesses a number as close as possible to the secret number. </span>
+                </div>
             </div>
 
         </section>
@@ -102,5 +110,7 @@
     });
   </script>
 <!-- End of script -->
+ <script src="/main.js">
+ </script>
 </body>
 </html>
