@@ -3,6 +3,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css">
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script> <!--Imports a JS library for typing effect-->
+
     <title>Martin Titus</title>
 </head>
 
@@ -36,7 +38,7 @@
         <main class="main overlay">
             <div class="name-container">
                 <h1 class="main-name">Martin Titus</h1>
-                <h4>I am web developer</h4>
+                <h4 class="typed">I am a <span id="typed-element"></span></h4>
             </div>
         </main>
         <section class="about" id="about">
@@ -90,6 +92,15 @@
         </section>
        
 
-
+<!-- Script for making element appear typed -->
+<script>
+    var typed = new Typed('#typed-element', {
+      strings: ['<i>Web Developer</i>.', '<i>Freelancer</i>.', '<i>Full Stack Developer</i>.'],
+      typeSpeed: 150,
+      backSpeed: 50,
+      loop: true,
+    });
+  </script>
+<!-- End of script -->
 </body>
 </html>

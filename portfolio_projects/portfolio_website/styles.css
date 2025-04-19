@@ -15,6 +15,7 @@ body {
     font-size: 1rem;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: rgb(0, 0, 0);
+    overflow-x: hidden; /*Hides the horizontal scroll bar on entire page*/
     
 }
 header {
@@ -114,20 +115,30 @@ header {
 }
 
 .overlay { /*Reasearch this code*/
-    border-image: linear-gradient(hsla(240, 13%, 80%, .5), hsl(0, 1%, 17%, 0.4)) fill 1;
+    border-image: linear-gradient(hsla(240, 13%, 80%, .4), hsl(0, 1%, 17%, .8)) fill 1;
 }
 
 .name-container {
     position: relative;
     top: 40%;
     right: 10%;
-    color: aliceblue;
     transform: scaleX(-1);
 }
 .main-name {
     color: rgb(28, 14, 14);
     font-size: 4rem;
     margin-bottom: 0;
+}
+
+.typed {
+    font-size: 1.5rem;
+    color: rgb(200, 166, 233);
+    
+}
+
+#typed-element {
+    color: rgb(187, 130, 244);
+    text-decoration-line: underline;
 }
 
 .photo {
