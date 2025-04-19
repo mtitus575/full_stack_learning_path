@@ -1,29 +1,39 @@
-/* Grid area setup */
 body {
-    display: grid;
-    grid-template-areas: 
-        "aside main main main"
-        "aside main main main"
-        "aside about about about"
-        "aside skills skills skills"
-        "aside port port port"
-        "aside services services services"
-        " aside contact contact contact";
-    grid-template-columns: 1fr 5fr ;
-
-    margin: 0;
-    font-size: 1rem;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: rgb(0, 0, 0);
-    overflow-x: hidden; /*Hides the horizontal scroll bar on entire page*/
-    
+        margin: 0;
+        font-size: 1rem;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: rgb(0, 0, 0);
+        overflow-x: hidden; /*Hides the horizontal scroll bar on entire page*/
 }
-header {
+
+
+/*Media queries*/
+@media (min-width: 769px) {
+    body {
+        display: grid;
+        grid-template-columns: 15% 85%;
+        grid-template-rows: repeat(6, auto);
+        grid-template-areas: 
+            "aside main" 
+            "aside about"
+            "aside skills"
+            "aside port"
+            "aside services"
+            "aside contact";
+    }
+    .sidebar-container {
+        position: fixed;
+    }
+}
+
+
+/* Grid area setup */
+aside {
     grid-area: aside;
-    position: fixed;
-    top: 0;
+    /* position: fixed; */
+    /* top: 0;
     height: 100vh;
-    min-width: 16.7%; 
+    min-width: 16.7%;  */
 }
 
 main {
@@ -49,7 +59,7 @@ main {
 }
 
 /* Styling for sidebar: */
-header {
+aside {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -70,17 +80,21 @@ header {
 }
 
 .sidebar-name {
-    font-size: 2rem;
+    font-size: clamp(1rem, 2vw, 2rem);
     font-weight: 600;
+    display: flex;
+    justify-content: center;
 }
 
 #socials { /*This is the parent container for all the socials images/links*/
     padding: 0;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 #socials img {
     height: 1.5rem;
-    margin: 0 0.75rem; /*Makes the spacing between the socials icons*/    
+  
 }
 
 #side-nav {
@@ -103,16 +117,6 @@ header {
     text-decoration: none;
     color: aliceblue;
 }
-
-/*Interactivity for aside elements*/
-.social-link:hover {
-    scale: 1.1;
-}
-
-.nav-link:hover {
-    text-decoration: underline;
-}
-
 
 /*Banner page styling*/
 .main {
@@ -219,20 +223,19 @@ h2::after { /*This pseudo selector creates an underline that is smaller than the
     
 }
 .imgInfoBox {
-    height: 25rem;
-    width: 25rem;
+    height: 20rem;
+    width: 20rem;
     border-radius: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgb(200, 166, 233);
-    opacity: 90%;
+    opacity: 95%;
     display: none;
 }
 
 .imgInfoBox > p {
     margin-left: 1rem;
-
 }
 
 #img1 {
@@ -241,6 +244,7 @@ h2::after { /*This pseudo selector creates an underline that is smaller than the
     background-repeat: no-repeat;
     background-position: 50%;
 }
+
 #img1:hover {
     box-shadow: .25rem .25rem 1rem;
     scale: 1.01;
@@ -255,10 +259,12 @@ h2::after { /*This pseudo selector creates an underline that is smaller than the
     background-size:contain;
     background-repeat: no-repeat;
 }
+
 #img2:hover {
     box-shadow: .25rem .25rem 1rem;
     scale: 1.01;
 }
+
 #img2:active {
     box-shadow: .05rem .05rem .5rem;
     scale: 1;
@@ -311,8 +317,7 @@ h2::after { /*This pseudo selector creates an underline that is smaller than the
 }
 
 .office-location {
-    margin: 1.5rem;
-    
+    margin: 1.5rem; 
 }
 
 .contact-container {
@@ -327,7 +332,6 @@ h2::after { /*This pseudo selector creates an underline that is smaller than the
 .name-mail-container {
    display: flex;
    justify-content: space-around;
-
 }
 
 .name-mail-container > div, .subject, .message {
@@ -336,8 +340,7 @@ h2::after { /*This pseudo selector creates an underline that is smaller than the
 }
 
 .subject, .message {
-    margin-left: 3.5rem;
-    
+    margin-left: 3.5rem;   
 }
 
 label {
@@ -362,20 +365,29 @@ label {
     scale: 1;
 }
 
+/*INTERACTIVITY*/
 /*Adding interactivity to portfolio clickable areas*/
-.all:hover {
+.all:hover, .sites:hover, .apps:hover {
     text-decoration: underline;
 }
 
-.sites:hover {
-    text-decoration: underline;
-}
-
-.apps:hover {
-    text-decoration: underline;
-}
-
-.all:active {
+.all:active, .sites:active, .apps:active {
     text-decoration: none;
 }
-/* stopped here, need to continue active pseudoclasses */
+/*Interactivity for sidebar elements*/
+.social-link:hover {
+    scale: 1.1;
+}
+
+.social-link:active {
+    scale: 1;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.nav-link:active {
+    text-decoration: none;
+}
+
