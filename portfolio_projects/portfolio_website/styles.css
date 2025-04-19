@@ -24,7 +24,6 @@ header {
     top: 0;
     height: 100vh;
     min-width: 16.7%; 
-   
 }
 
 main {
@@ -105,6 +104,16 @@ header {
     color: aliceblue;
 }
 
+/*Interactivity for aside elements*/
+.social-link:hover {
+    scale: 1.1;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+
 /*Banner page styling*/
 .main {
     height: 100vh;
@@ -120,7 +129,7 @@ header {
 
 .name-container {
     position: relative;
-    top: 40%;
+    top: 30%;
     right: 10%;
     transform: scaleX(-1);
 }
@@ -131,20 +140,13 @@ header {
 }
 
 .typed {
-    font-size: 1.5rem;
-    color: rgb(200, 166, 233);
-    
-}
-
-#typed-element {
-    color: rgb(187, 130, 244);
-    text-decoration-line: underline;
+    font-size: 1.7rem;
+    color: rgb(28, 14, 14);    
 }
 
 .photo {
     height: 25rem;
     border-radius: 50%;
-    
 }
 
 /*Styling ABOUT section:*/
