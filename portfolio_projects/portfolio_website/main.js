@@ -63,3 +63,5 @@ const img3MouseOut = document.getElementById('img3Info').addEventListener('mouse
     document.getElementById('img2').style.display = '';
     document.getElementById('img3').style.display = '';
 });
+
+
