@@ -10,15 +10,18 @@ In this project you will create a parent class named Media with three subclasses
 
 These three subclasses have the following properties and methods:
     1. Book
-        1.1 Properties: author (string), title (string), pages (number), isCheckedOut (boolean, initially false), and ratings (array, initially empty).
+        1.1 Properties: author (string), title (string), pages (number), isCheckedOut (boolean, initially false), 
+            and ratings (array, initially empty).
         1.2 Getters: all properties have a getter
         1.3 Methods: .getAverageRating(), .toggleCheckOutStatus(), and .addRating()
     2. Movie
-        2.1 Properties: director (string), title (string), runTime (number), isCheckedOut (boolean, initially false), and ratings (array, initially empty)
+        2.1 Properties: director (string), title (string), runTime (number), isCheckedOut (boolean, initially false),
+            and ratings (array, initially empty)
         2.2 Getters: all properties have a getter
         2.3 Methods: .getAverageRating(), .toggleCheckOutStatus(), and .addRating()
     3. CD
-        3.1 Properties: artist (string), title (string), isCheckedOut (boolean, initially false), and ratings (array, initially empty), songs (array of strings)
+        3.1 Properties: artist (string), title (string), isCheckedOut (boolean, initially false), 
+            and ratings (array, initially empty), songs (array of strings)
         3.2 Getters: all properties have a getter
         3.3 Methods: .getAverageRating(), .toggleCheckOutStatus(), and .addRating()
 
