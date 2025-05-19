@@ -1,70 +1,127 @@
 //Parent class:
 class Media {
+    //properties:
     constructor(title){
-        //properties:
         this._title = title;
-        this._isCheckedOut = false;
         this._ratings = [];
+        this._isCheckedOut = false;
     }
-     //getters:
+    //getters:
     get title(){
         return this._title;
     }
-
+    get ratings(){
+        return this._ratings;
+    }
     get isCheckedOut(){
         return this._isCheckedOut;
     }
-
-    get ratings(){
-        return this._ratings
-    }
-
     //setters:
     set isCheckedOut(value){
-        this._isCheckedOut = value;
+        return this._isCheckedOut = value;
     }
-
     //methods:
-    toggleCheckOutStatus(){
-        if(this.isCheckedOut === true){
-            this.isCheckedOut = false;
+    addRating(rating){
+        if(rating > 0 && rating <=5){
+            this._ratings.push(rating);
         } else {
-            this.isCheckedOut = true;
+            console.log('Add a rating between 1 and 5.');
         }
-    }
 
+        
+    }
     getAverageRating(){
-        //adding all the values in the array up together.
-        let ratingSum = this.ratings.reduce((accumulator, rating) => {
-            accumulator + rating;
-        })
-        //gets the average of the sum of the array
-        let averageRating = ratingSum / this.ratings.length;
-        //returns the average
+        let ratingSum = this._ratings.reduce((accumulator, rating) => accumulator + rating);
+        let averageRating = ratingSum / this._ratings.length;
+
         return averageRating
     }
-
-    addRating(value){
-        this.ratings.push(value)
+    toggleCheckOutStatus(){
+        if(this._isCheckedOut === false){
+            this.isCheckedOut = true;
+        } else{
+            this.isCheckedOut = false;
+        }
     }
 };
 
-//Child classes:
-class Book extends Media {
-    constructor(){
-
+//Children classes:
+class Book extends Media{
+    //properties:
+    constructor(title, author, pages){
+        super(title); //gives access to parent class's properties, getters, setters and methods.
+        this._author = author;
+        this._pages = pages;
+    }
+    //getters:
+    get author(){
+        return this._author;
+    }
+    get pages(){
+        return this._pages
     }
 };
 
-class Movie extends Media {
-    constructor(){
-
+class Movie extends Media{
+    constructor(title, director, runTime){
+        super(title);
+        this._director = director;
+        this._runTime = runTime;
+    }
+    //getters:
+    get director(){
+        return this._director;
+    }
+    get runTime(){
+        return this._runTime;
     }
 };
 
-class CD extends Media {
-    constructor(){
-
+class Cd extends Media{
+    constructor(title, artist){
+        super(title);
+        this._artist = artist;
+        this._songs = [];
+    }
+    //getters:
+    get artist(){
+        return this._artist;
+    }
+    get songs(){
+        return this._songs;
+    }
+    //method to add songs to array:
+    addSongs(song){
+        this._songs.push(song);
     }
 };
+
+//Book instance:
+const historyOfEverything = new Book('A Short History of Nearly Everything', 'Bill Bryson', 544)
+historyOfEverything.toggleCheckOutStatus();
+console.log('Is this book checked out? ' + historyOfEverything.isCheckedOut);
+historyOfEverything.addRating(4);
+historyOfEverything.addRating(5);
+historyOfEverything.addRating(5);
+console.log(historyOfEverything.getAverageRating());
+console.log(historyOfEverything);
+
+
+//Movie instance:
+const speed = new Movie('Speed', 'Jan de Bont', 116);
+speed.toggleCheckOutStatus();
+console.log(speed.isCheckedOut);
+speed.addRating(1);
+speed.addRating(1);
+speed.addRating(5);
+console.log(speed.getAverageRating());
+console.log(speed)
+
+//CD instance:
+const firstCd = new Cd('Crazy Songs', 'Markeeza');
+firstCd.addSongs('testName');
+firstCd.addRating(3);
+firstCd.addRating(5);
+firstCd.addRating(4);
+console.log(firstCd);
 
