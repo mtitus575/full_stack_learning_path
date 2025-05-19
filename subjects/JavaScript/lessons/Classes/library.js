@@ -92,7 +92,11 @@ class Cd extends Media{
     }
     //method to add songs to array:
     addSongs(song){
-        this._songs.push(song);
+        if(typeof song === 'string'){
+            this._songs.push(song);
+        } else {
+            console.log('Please add song by name.')
+        }
     }
 };
 
@@ -120,6 +124,7 @@ console.log(speed)
 //CD instance:
 const firstCd = new Cd('Crazy Songs', 'Markeeza');
 firstCd.addSongs('testName');
+firstCd.addSongs(55);
 firstCd.addRating(3);
 firstCd.addRating(5);
 firstCd.addRating(4);
