@@ -1,0 +1,8 @@
+Project breakdown
+
+**Recipe Book**
+- Create an array of recipe objects (title, ingredients, instructions).
+- In `App`, map over recipes and render a `Recipe` component for each, passing props.
+- In `Recipe`, use props to show the recipe’s title, ingredients, and instructions.
+- Add CSS for recipe formatting.
+- Render all recipes in the app.
