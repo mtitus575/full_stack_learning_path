@@ -1,0 +1,8 @@
+Project breakdown
+
+**Weather Dashboard**
+- Create an array of city weather objects (city, temperature, condition, icon URL).
+- In `App`, map over the array and render a `WeatherCard` for each city, passing props.
+- In `WeatherCard`, use props to show the city’s weather.
+- Add CSS for weather card layout.
+- Render all weather cards in the app.
