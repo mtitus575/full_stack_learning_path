@@ -1,0 +1,8 @@
+Project breakdown
+
+**Movie Ratings**
+- Make an array of movie objects (title, poster URL, rating, review).
+- In `App`, map over movies and render a `Movie` component for each, passing props.
+- In `Movie`, use props to display the movie’s info.
+- Style the movie cards or list.
+- Show all movies in the app.
