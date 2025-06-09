@@ -1,0 +1,8 @@
+Project breakdown
+
+**Product List**
+- Make an array of product objects (name, price, image, description).
+- In `App`, map over products and render a `Product` component for each, passing props.
+- In `Product`, use props to show product details.
+- Style the product cards or list.
+- Display all products in the app.
