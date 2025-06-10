@@ -1,4 +1,4 @@
-const movies = [
+const moviesArr = [
   {
     title: "The Shawshank Redemption",
     poster: "https://images-eu.ssl-images-amazon.com/images/I/51EZXDOXBfL._AC_UL210_SR210,210_.jpg",
@@ -60,3 +60,5 @@ const movies = [
     review: "An epic conclusion to the legendary fantasy trilogy."
   }
 ];
+
+export default moviesArr;
