@@ -14,19 +14,19 @@ const products = [
   {
     name: "Samsung Galaxy Watch 5",
     price: 279.99,
-    image: "./images/samsung-galaxy-watch-5.jpg",
+    image: "https://m.media-amazon.com/images/I/71v2jVh6nIL._AC_SL1500_.jpg",
     description: "Track your fitness, sleep, and heart rate with this stylish smartwatch."
   },
   {
     name: "JBL Flip 6 Bluetooth Speaker",
     price: 129.95,
-    image: "./images/jbl-flip-6.jpg",
+    image: "https://www.jbl.com/dw/image/v2/BFND_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dw46cc380c/1_JBL_FLIP6_HERO_TEAL_29399_x1.png?sw=453&sh=453",
     description: "Bold sound for every adventure. Waterproof and dustproof."
   },
   {
     name: "Kindle Paperwhite",
     price: 139.99,
-    image: "./images./kindle-paperwhite.jpg",
+    image: "https://m.media-amazon.com/images/I/71FWKtSIYUL._AC_SX425_.jpg",
     description: "Now with a 6.8” display and adjustable warm light."
   }
 ];
