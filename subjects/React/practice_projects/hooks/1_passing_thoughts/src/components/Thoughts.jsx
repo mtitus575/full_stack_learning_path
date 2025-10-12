@@ -6,7 +6,10 @@ function Thoughts(props){
     return (
         <ul>
             {thoughts.map(thought => {
-                 return <li key={thought.id}>{thought.text}</li>
+                 return <li key={thought.id}>
+                    <p>{thought.text}</p>
+                    <button>x</button>
+                 </li>
             })}
         </ul>
     );
