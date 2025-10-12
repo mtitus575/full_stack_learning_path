@@ -23,9 +23,14 @@ function ThoughtItem(props) {
   }, [thought.id, thought.expiresIn, removeThought]);
 
   return (
-    <li>
+    <li className="list-item">
       <p>{thought.text}</p>
-      <button onClick={() => removeThought(props.thought.id)}>x</button>
+      <button 
+      className="removeBtn"
+      onClick={() => removeThought(props.thought.id)}
+      >
+        x
+      </button>
     </li>
   );
 }

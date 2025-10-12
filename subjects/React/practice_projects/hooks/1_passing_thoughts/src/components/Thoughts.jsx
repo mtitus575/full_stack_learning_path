@@ -4,7 +4,7 @@ function Thoughts(props) {
   const { thoughts, removeThought } = props;
 
   return (
-    <ul>
+    <ul className='list'>
       {thoughts.map((thought) => {
         return (
           <ThoughtItem 

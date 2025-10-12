@@ -29,22 +29,25 @@ function App() {
 
   //variables to hold placeholder text or thoughts:
   const noThought = (
-    <div>
+    <div className="Thought-ctn">
       <p>No thoughts yet</p>
     </div>
   );
 
   const currentThought = (
-    <div>
-        <Thoughts thoughts={thoughts} removeThought={removeThought} />
+    <div className="Thought-ctn">
+        <Thoughts 
+          thoughts={thoughts} 
+          removeThought={removeThought} 
+        />
       </div>
   )
 
   return (
-    <>
+    <div className="app-ctn">
       <AddThoughtForm thoughts={thoughts} addThought={addThought} />
       {thoughts.length === 0 ? noThought : currentThought}
-    </>
+    </div>
   );
 }
 
