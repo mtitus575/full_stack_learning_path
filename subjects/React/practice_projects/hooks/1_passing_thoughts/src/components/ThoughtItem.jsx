@@ -1,14 +1,19 @@
 import { useEffect } from "react";
+const DEBUG = false;
+function debug(consoleMessage){
+  return
+}
 
 function ThoughtItem(props) {
   const { thought, removeThought } = props;
 
   useEffect(() => {
     const removeTime = thought.expiresIn - Date.now();
-
+    
     if (removeTime > 0) {
       const removalTimer = setTimeout(() => {
         removeThought(thought.id);
+        console.log('Thought removed.')
       }, removeTime);
       
       return () => {

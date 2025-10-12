@@ -11,23 +11,22 @@ function AddThoughtForm(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (text.length < 1) {
-      return;
+    if (text.trim()) {
+      const newThought = {
+        id: generateId(),
+        text: text.trim(),
+        expiresIn: generateExpiration(),
+      };
+
+      props.addThought(newThought);
+      setText(" ");
     }
-
-    const newThought = {
-      id: generateId(),
-      text: text,
-      expiresIn: generateExpiration(),
-    };
-
-    props.addThought(newThought);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" onChange={handleChange} />
-      <button>Save</button>
+      <input type="text" value={text} onChange={handleChange} />
+      <button disabled={!text.trim()}>Save</button>
     </form>
   );
 }

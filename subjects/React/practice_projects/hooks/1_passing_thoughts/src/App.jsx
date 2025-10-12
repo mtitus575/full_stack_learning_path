@@ -8,14 +8,9 @@ function App() {
   const [thoughts, setThoughts] = useState([
     {
       id: generateId(),
-      text: "Thinking out loud",
-      expiresIn: generateExpiration(),
-    },
-    {
-      id: generateId(),
-      text: "I am working on React",
-      expiresIn: generateExpiration(),
-    },
+      text: 'First thought',
+      expiresIn: generateExpiration()
+    }
   ]);
 
   const addThought = (thoughtToAdd) => {
@@ -32,12 +27,23 @@ function App() {
     });
   };
 
+  //variables to hold placeholder text or thoughts:
+  const noThought = (
+    <div>
+      <p>No thoughts yet</p>
+    </div>
+  );
+
+  const currentThought = (
+    <div>
+        <Thoughts thoughts={thoughts} removeThought={removeThought} />
+      </div>
+  )
+
   return (
     <>
       <AddThoughtForm thoughts={thoughts} addThought={addThought} />
-      <div>
-        <Thoughts thoughts={thoughts} removeThought={removeThought} />
-      </div>
+      {thoughts.length === 0 ? noThought : currentThought}
     </>
   );
 }

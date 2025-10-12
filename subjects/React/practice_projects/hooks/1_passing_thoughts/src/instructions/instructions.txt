@@ -12,7 +12,7 @@ Instructions:
 [X] 5. Render a list of `Thought` components, each displaying a thought’s text and a delete button.  
 [X] 6. Implement manual deletion of thoughts by clicking the delete button.  
 [X] 7. Use `useEffect` in `Thought` to automatically remove a thought after 15 seconds.  
-[] 8. Style the app for a clean, user-friendly interface.
+[X] 8. Style the app for a clean, user-friendly interface.
 
 Other details:
 Consider these points:
