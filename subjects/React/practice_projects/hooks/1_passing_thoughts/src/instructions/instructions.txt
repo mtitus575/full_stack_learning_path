@@ -10,7 +10,7 @@ Instructions:
 [X] 3. Build an `AddThoughtForm` component with an input and submit button to add new thoughts.  
 [X] 4. Add logic to create a new thought object with a unique id, text, and expiration time.  
 [X] 5. Render a list of `Thought` components, each displaying a thought’s text and a delete button.  
-[] 6. Implement manual deletion of thoughts by clicking the delete button.  
+[X] 6. Implement manual deletion of thoughts by clicking the delete button.  
 [] 7. Use `useEffect` in `Thought` to automatically remove a thought after 15 seconds.  
 [] 8. Style the app for a clean, user-friendly interface.
 

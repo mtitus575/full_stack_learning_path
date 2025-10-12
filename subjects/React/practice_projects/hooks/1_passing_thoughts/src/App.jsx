@@ -1,45 +1,45 @@
-import { useState } from 'react'
-import './App.css'
-import { generateExpiration, generateId } from './components/utilities/helpers'
-import AddThoughtForm from './components/AddThoughtForm'
-import Thoughts from './components/Thoughts'
+import { useState } from "react";
+import "./App.css";
+import { generateExpiration, generateId } from "./components/utilities/helpers";
+import AddThoughtForm from "./components/AddThoughtForm";
+import Thoughts from "./components/Thoughts";
 
 function App() {
-  const [thoughts,setThoughts] = useState([
+  const [thoughts, setThoughts] = useState([
     {
       id: generateId(),
-      text: 'Thinking out loud',
-      expiresIn: generateExpiration()
+      text: "Thinking out loud",
+      expiresIn: generateExpiration(),
     },
     {
       id: generateId(),
-      text: 'I am working on React',
-      expiresIn: generateExpiration()
-    }
-  ])
+      text: "I am working on React",
+      expiresIn: generateExpiration(),
+    },
+  ]);
 
-  const addThought =(thoughtToAdd)=>{
+  const addThought = (thoughtToAdd) => {
     setThoughts((prevThoughts) => {
-      return [...prevThoughts, thoughtToAdd]
-    })
-  }
+      return [...prevThoughts, thoughtToAdd];
+    });
+  };
 
   const removeThought = (idToRemove) => {
-    setThoughts((prevThoughts) =>{
+    setThoughts((prevThoughts) => {
       return prevThoughts.filter((thought) => {
-        return thought.id !== idToRemove
-      })
-    })
-  }
-  
-return (
-  <>
-    <AddThoughtForm thoughts={thoughts} addThought={addThought} />
-    <div>
-      <Thoughts thoughts={thoughts}  removeThought={removeThought}/>
-    </div>
-  </>
-);
+        return thought.id !== idToRemove;
+      });
+    });
+  };
+
+  return (
+    <>
+      <AddThoughtForm thoughts={thoughts} addThought={addThought} />
+      <div>
+        <Thoughts thoughts={thoughts} removeThought={removeThought} />
+      </div>
+    </>
+  );
 }
 
-export default App
+export default App;
