@@ -5,5 +5,27 @@ Project Brief:
     Once you add a short thought, it’ll disappear after just 15 seconds.
 
 Instructions:
-1.  
-2.  
+[X] 1. Set up a new React app using Create React App or Vite.  
+[X] 2. Create an `App` component to hold the main state: an array of thought objects.  
+[X] 3. Build an `AddThoughtForm` component with an input and submit button to add new thoughts.  
+[] 4. Add logic to create a new thought object with a unique id, text, and expiration time.  
+[] 5. Render a list of `Thought` components, each displaying a thought’s text and a delete button.  
+[] 6. Implement manual deletion of thoughts by clicking the delete button.  
+[] 7. Use `useEffect` in `Thought` to automatically remove a thought after 15 seconds.  
+[] 8. Style the app for a clean, user-friendly interface.
+
+Other details:
+Consider these points:
+- Prevent empty thoughts from being added.
+- Clear the input after submitting a thought.
+- Clean up timers in `useEffect` to avoid memory leaks.
+- Handle edge cases, like deleting a thought before its timer ends.
+- Give feedback when the thoughts list is empty.
+- Use unique keys for each thought in the list.
+- Keep code organized with clear component structure and comments.
+- Make sure the app is accessible (labels for inputs, button aria-labels).
+- Disable the submit button when the input is empty.
+- Handle rapid adding/removing of thoughts gracefully.
+- Add PropTypes or TypeScript for type safety if desired.
+- Test the app for unexpected behavior or errors.
+- Use consistent formatting and naming for readability.
