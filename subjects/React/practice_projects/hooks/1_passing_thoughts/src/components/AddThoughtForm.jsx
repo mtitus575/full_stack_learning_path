@@ -11,8 +11,8 @@ function AddThoughtForm(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if(text.length < 1){
-      return
+    if (text.length < 1) {
+      return;
     }
 
     const newThought = {
@@ -22,8 +22,6 @@ function AddThoughtForm(props) {
     };
 
     props.addThought(newThought);
-
-    
   };
 
   return (
