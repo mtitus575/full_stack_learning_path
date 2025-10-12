@@ -23,12 +23,20 @@ function App() {
       return [...prevThoughts, thoughtToAdd]
     })
   }
+
+  const removeThought = (idToRemove) => {
+    setThoughts((prevThoughts) =>{
+      return prevThoughts.filter((thought) => {
+        return thought.id !== idToRemove
+      })
+    })
+  }
   
 return (
   <>
     <AddThoughtForm thoughts={thoughts} addThought={addThought} />
     <div>
-      <Thoughts thoughts={thoughts}  />
+      <Thoughts thoughts={thoughts}  removeThought={removeThought}/>
     </div>
   </>
 );

@@ -1,18 +1,22 @@
+function Thoughts(props) {
+  const { thoughts, removeThought } = props;
 
+  return (
+    <ul>
+      {thoughts.map((thought) => {
+        function handleDeleteClick() {
+          removeThought(thought.id);
+        }
 
-function Thoughts(props){
-    const {thoughts, setThoughts} = props
-
-    return (
-        <ul>
-            {thoughts.map(thought => {
-                 return <li key={thought.id}>
-                    <p>{thought.text}</p>
-                    <button>x</button>
-                 </li>
-            })}
-        </ul>
-    );
-};
+        return (
+          <li key={thought.id}>
+            <p>{thought.text}</p>
+            <button onClick={handleDeleteClick}>x</button>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
 
 export default Thoughts;
