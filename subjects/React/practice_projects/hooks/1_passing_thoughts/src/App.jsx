@@ -2,25 +2,34 @@ import { useState } from 'react'
 import './App.css'
 import { generateExpiration, generateId } from './components/utilities/helpers'
 import AddThoughtForm from './components/AddThoughtForm'
+import Thoughts from './components/Thoughts'
 
 function App() {
-  const [thought,setThought] = useState([
+  const [thoughts,setThoughts] = useState([
     {
       id: generateId(),
       text: 'Thinking out loud',
-      isExpired: generateExpiration()
+      expiresIn: generateExpiration()
     },
     {
       id: generateId(),
       text: 'I am working on React',
-      isExpired: generateExpiration()
+      expiresIn: generateExpiration()
     }
   ])
-  
 
+  const addThought =(thoughtToAdd)=>{
+    setThoughts((prevThoughts) => {
+      return [...prevThoughts, thoughtToAdd]
+    })
+  }
+  
 return (
   <>
-    <AddThoughtForm />
+    <AddThoughtForm thoughts={thoughts} addThought={addThought} />
+    <div>
+      <Thoughts thoughts={thoughts}  />
+    </div>
   </>
 );
 }

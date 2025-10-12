@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { generateExpiration, generateId } from "./utilities/helpers";
 
-function AddThoughtForm() {
+function AddThoughtForm(props) {
   const [text, setText] = useState("");
 
   const handleChange = ({ target }) => {
@@ -12,9 +13,13 @@ function AddThoughtForm() {
 
     const newThought = {
       id: generateId(),
-      text: "I am working on React",
-      isExpired: generateExpiration(),
+      text: text,
+      expiresIn: generateExpiration(),
     };
+
+    props.addThought(newThought);
+
+    
   };
 
   return (
