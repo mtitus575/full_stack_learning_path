@@ -1,0 +1,859 @@
+# React Theory Practice Questions 🎓
+
+> 💡 **Learning Tip:** This quiz has 35 questions across 5 sections. Don't try to do them all at once! Take breaks between sections and aim for 5-7 questions per study session for the best learning experience.
+
+## Section 1: Virtual DOM (5 Questions)
+
+> 📚 **Section Focus:** Understanding React's core optimization strategy and how it improves performance.
+
+### Q1. What is the Virtual DOM and why is it important?
+
+**Answer the following:**
+
+- What problem does the Virtual DOM solve?
+- How does React use the Virtual DOM to optimize performance?
+- What happens during the "reconciliation" process?
+
+### Q2. Compare Virtual DOM vs Real DOM
+
+**Fill in the comparison table:**
+
+| Aspect              | Virtual DOM    | Real DOM       |
+| ------------------- | -------------- | -------------- |
+| Performance         | \***\*\_\*\*** | \***\*\_\*\*** |
+| Memory Usage        | \***\*\_\*\*** | \***\*\_\*\*** |
+| Update Speed        | \***\*\_\*\*** | \***\*\_\*\*** |
+| Direct Manipulation | \***\*\_\*\*** | \***\*\_\*\*** |
+
+### Q3. Virtual DOM Workflow
+
+**Order these steps (1-5) in the correct Virtual DOM update process:**
+
+- [ ] Compare new Virtual DOM tree with previous Virtual DOM tree
+- [ ] Apply minimal changes to Real DOM
+- [ ] State change triggers re-render
+- [ ] Create new Virtual DOM tree
+- [ ] Calculate differences (diffing algorithm)
+
+### Q4. True/False - Virtual DOM Concepts
+
+- [ ] T/F: Virtual DOM is faster than Real DOM in all scenarios
+- [ ] T/F: Virtual DOM is a JavaScript representation of the Real DOM
+- [ ] T/F: React updates the entire Real DOM on every state change
+- [ ] T/F: Virtual DOM helps with predictable UI updates
+
+### Q5. Scenario Question
+
+**You have a list of 1000 items, and only 1 item changes. Explain how the Virtual DOM handles this update efficiently compared to directly manipulating the Real DOM.**
+
+---
+
+### ✅ **Section 1 Checkpoint**
+
+**Pause here and review your understanding:**
+
+- Can you explain what the Virtual DOM is in your own words?
+- Do you understand why React uses this approach?
+- Are you comfortable with the reconciliation process?
+
+**If you answered "yes" to all three, continue to Section 2. If not, review the concepts before moving forward.**
+
+---
+
+## Section 2: JSX (8 Questions)
+
+> 📚 **Section Focus:** Mastering React's syntax, expressions, and JSX patterns.
+
+### Q6. JSX Fundamentals
+
+**What does this JSX code compile to?**
+
+```jsx
+const element = <h1 className="greeting">Hello, World!</h1>;
+```
+
+Write the equivalent `React.createElement()` call:
+
+### Q7. JSX Rules
+
+**Identify what's wrong with this JSX and fix it:**
+
+```jsx
+function BadComponent() {
+  return (
+    <h1>Welcome</h1>
+    <p>This is a paragraph</p>
+    <button onclick="handleClick()">Click me</button>
+  );
+}
+```
+
+### Q8. Expressions in JSX
+
+**What will be rendered for each expression?**
+
+```jsx
+const name = "Alice";
+const age = 25;
+const isStudent = true;
+const courses = ["React", "JavaScript", "CSS"];
+
+// What renders?
+{
+  name;
+} // Result: _________
+{
+  age > 18 ? "Adult" : "Minor";
+} // Result: _________
+{
+  isStudent && "Student";
+} // Result: _________
+{
+  courses.length;
+} // Result: _________
+```
+
+### Q9. Conditional Rendering Patterns
+
+**Complete these conditional rendering patterns:**
+
+```jsx
+// Pattern 1: Ternary operator
+{
+  isLoggedIn ? _________ : _________;
+}
+
+// Pattern 2: Logical AND
+{
+  showMessage && _________;
+}
+
+// Pattern 3: Logical OR (default values)
+{
+  userName || _________;
+}
+
+// Pattern 4: Multiple conditions
+{
+  isAdmin ? _________ : isModerator ? _________ : _________;
+}
+```
+
+### Q10. Arrays and Keys
+
+**What's wrong with this list rendering? Provide the corrected version:**
+
+```jsx
+const items = ["apple", "banana", "orange"];
+return (
+  <ul>
+    {items.map((item) => (
+      <li>{item}</li>
+    ))}
+  </ul>
+);
+```
+
+### Q11. Event Handlers in JSX
+
+**Complete the event handler patterns:**
+
+```jsx
+// Inline function
+<button onClick={_________}>Click me</button>
+
+// Function reference
+<button onClick={_________}>Click me</button>
+
+// Function with parameters
+<button onClick={_________}>Delete Item</button>
+
+// Form submission
+<form onSubmit={_________}>
+```
+
+### Q12. JSX Attributes
+
+**Convert these HTML attributes to JSX:**
+
+```html
+<!-- HTML -->
+<div class="container" for="email" tabindex="0"></div>
+<label for="email">Email:</label>
+<input type="text" readonly />
+```
+
+```jsx
+{/* JSX */}
+<div _________ _________ _________></div>
+<label _________>Email:</label>
+<input type="text" _________>
+```
+
+### Q13. JSX Best Practices
+
+**Rate these practices as Good ✅ or Bad ❌ and explain why:**
+
+- [ ] Using index as key in lists: \***\*\_\*\***
+- [ ] Inline styles in JSX: \***\*\_\*\***
+- [ ] Arrow functions in render: \***\*\_\*\***
+- [ ] Fragment shorthand `<></>`: \***\*\_\*\***
+
+---
+
+### ✅ **Section 2 Checkpoint**
+
+**Pause here and review your understanding:**
+
+- Can you write JSX confidently with proper syntax?
+- Do you understand expressions and conditional rendering in JSX?
+- Are you comfortable with event handlers and attributes?
+
+**If you're feeling confident, continue to Section 3. If JSX still feels tricky, practice writing some simple components before moving on.**
+
+---
+
+## Section 3: React Components (7 Questions)
+
+> 📚 **Section Focus:** Building and organizing functional components with proper state management.
+
+### Q14. Component Types
+
+**Complete the component conversion:**
+
+```jsx
+// Convert this functional component to use proper React syntax
+function Welcome() {
+  const [name, setName] = _________;
+
+  return (
+    <div>
+      <h1>Hello, {_________}!</h1>
+      <input value={_________} onChange={_________} />
+    </div>
+  );
+}
+```
+
+### Q15. useState Hook
+
+**Analyze this useState usage:**
+
+```jsx
+const [count, setCount] = useState(0);
+const [user, setUser] = useState({ name: "", age: 0 });
+const [items, setItems] = useState([]);
+```
+
+**Answer:**
+
+- What is the initial state for each variable?
+- How would you update `count` by 1?
+- How would you update only the user's name?
+- How would you add an item to the `items` array?
+
+### Q16. State Management Scenarios
+
+**Choose the correct state update for each scenario:**
+
+Scenario A: Toggle a boolean
+
+```jsx
+const [isVisible, setIsVisible] = useState(false);
+// Correct way to toggle:
+a) setIsVisible(!isVisible)
+b) setIsVisible(prev => !prev)
+c) Both are correct
+d) Neither is correct
+```
+
+Scenario B: Update object property
+
+```jsx
+const [user, setUser] = useState({ name: 'John', age: 30 });
+// Correct way to update only age:
+a) setUser({ age: 31 })
+b) setUser({ ...user, age: 31 })
+c) user.age = 31; setUser(user)
+d) setUser(prev => prev.age = 31)
+```
+
+### Q17. Component Lifecycle with Hooks
+
+**Match the Class Component lifecycle methods with their Hook equivalents:**
+
+| Class Component       | Hook Equivalent |
+| --------------------- | --------------- |
+| componentDidMount     | \***\*\_\*\***  |
+| componentDidUpdate    | \***\*\_\*\***  |
+| componentWillUnmount  | \***\*\_\*\***  |
+| shouldComponentUpdate | \***\*\_\*\***  |
+
+### Q18. Form Handling
+
+**Complete this controlled component:**
+
+```jsx
+function ContactForm() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      _________,
+      [_________]: _________,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    _________;
+    console.log("Form submitted:", formData);
+  };
+
+  return (
+    <form onSubmit={_________}>
+      <input name="name" value={_________} onChange={_________} />
+      {/* Complete for email and message */}
+    </form>
+  );
+}
+```
+
+### Q19. Conditional Rendering Logic
+
+**What will render in each case?**
+
+```jsx
+const isLoggedIn = false;
+const user = null;
+const items = [];
+
+// Case 1:
+{
+  isLoggedIn ? <Dashboard /> : <Login />;
+}
+// Renders: _________
+
+// Case 2:
+{
+  user && <Profile user={user} />;
+}
+// Renders: _________
+
+// Case 3:
+{
+  items.length > 0 && <ItemList items={items} />;
+}
+// Renders: _________
+
+// Case 4:
+{
+  items.length ? <ItemList items={items} /> : <EmptyState />;
+}
+// Renders: _________
+```
+
+### Q20. Component Composition
+
+**Design a component hierarchy for a blog post:**
+
+```
+BlogPost (parent)
+├── BlogHeader
+│   ├── Title
+│   ├── Author
+│   └── PublishDate
+├── BlogContent
+│   ├── Paragraph
+│   ├── Image
+│   └── CodeBlock
+└── BlogFooter
+    ├── Tags
+    ├── LikeButton
+    └── ShareButtons
+```
+
+**Which components need props? What props would they receive?**
+
+---
+
+### ✅ **Section 3 Checkpoint**
+
+**Pause here and review your understanding:**
+
+- Are you comfortable creating functional components?
+- Do you understand useState and how to manage component state?
+- Can you plan component hierarchies and props flow?
+
+**This is a good time for a longer break! Grab some coffee ☕ and continue when you're ready for component interaction patterns.**
+
+---
+
+## Section 4: Component Interaction & Props (6 Questions)
+
+> 📚 **Section Focus:** Understanding how components communicate and share data.
+
+### Q21. Props Flow
+
+**Trace the data flow in this component tree:**
+
+```jsx
+function App() {
+  const [users, setUsers] = useState([]);
+  return <UserList users={users} onUserSelect={handleUserSelect} />;
+}
+
+function UserList({ users, onUserSelect }) {
+  return (
+    <div>
+      {users.map((user) => (
+        <UserCard
+          key={user.id}
+          user={user}
+          onClick={() => onUserSelect(user.id)}
+        />
+      ))}
+    </div>
+  );
+}
+
+function UserCard({ user, onClick }) {
+  return (
+    <div onClick={onClick}>
+      <h3>{user.name}</h3>
+      <p>{user.email}</p>
+    </div>
+  );
+}
+```
+
+**Questions:**
+
+- What props does `UserList` receive?
+- What props does `UserCard` receive?
+- How does data flow from App to UserCard?
+- How does user interaction flow back to App?
+
+### Q22. State Lifting
+
+**You have two sibling components that need to share data. Where should the state live and why?**
+
+```
+Parent
+├── ComponentA (needs to display total)
+└── ComponentB (needs to update total)
+```
+
+**Answer:**
+
+- Where should the `total` state be placed?
+- How will ComponentA access the total?
+- How will ComponentB update the total?
+- What props need to be passed down?
+
+### Q23. Props Validation
+
+**Add appropriate prop validation:**
+
+```jsx
+function ProductCard({ name, price, isOnSale, tags, onAddToCart }) {
+  // Component implementation
+}
+
+// Add PropTypes validation:
+ProductCard.propTypes = {
+  name: _________,
+  price: _________,
+  isOnSale: _________,
+  tags: _________,
+  onAddToCart: _________,
+};
+
+ProductCard.defaultProps = {
+  isOnSale: _________,
+  tags: _________,
+};
+```
+
+### Q24. Component Communication Patterns
+
+**Match the communication pattern with the correct scenario:**
+
+| Pattern      | Scenario       |
+| ------------ | -------------- |
+| Props down   | \***\*\_\*\*** |
+| Callbacks up | \***\*\_\*\*** |
+| Context API  | \***\*\_\*\*** |
+| Custom hooks | \***\*\_\*\*** |
+
+Scenarios:
+A) Sharing theme data across entire app
+B) Child component notifying parent of click
+C) Parent passing data to child
+D) Sharing logic between components
+
+### Q25. Render Props Pattern
+
+**Complete this render prop implementation:**
+
+```jsx
+function DataFetcher({ url, render }) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+        setLoading(false);
+      });
+  }, [url]);
+
+  return _________(data, loading);
+}
+
+// Usage:
+<DataFetcher url="/api/users" render={(data, loading) => _________} />;
+```
+
+### Q26. Key Prop Understanding
+
+**Explain what happens in each scenario:**
+
+Scenario A: Using array index as key
+
+```jsx
+{
+  items.map((item, index) => <Item key={index} data={item} />);
+}
+```
+
+Scenario B: Using unique ID as key
+
+```jsx
+{
+  items.map((item) => <Item key={item.id} data={item} />);
+}
+```
+
+**When you delete the first item from the array:**
+
+- What happens with index keys?
+- What happens with ID keys?
+- Which is better and why?
+
+---
+
+### ✅ **Section 4 Checkpoint**
+
+**Pause here and review your understanding:**
+
+- Do you understand how data flows between components?
+- Are you comfortable with props and callback patterns?
+- Can you design component communication strategies?
+
+**Almost there! One more section focusing on the powerful hooks you'll use constantly.**
+
+---
+
+## Section 5: Hooks (useState & useEffect) (9 Questions)
+
+> 📚 **Section Focus:** Mastering React's most essential hooks for state and side effects.
+
+### Q27. useState Patterns
+
+**Complete these useState patterns:**
+
+```jsx
+// Counter with increment/decrement
+const [count, setCount] = useState(0);
+const increment = () => setCount(_________);
+const decrement = () => setCount(_________);
+
+// Toggle boolean
+const [isOpen, setIsOpen] = useState(false);
+const toggle = () => setIsOpen(_________);
+
+// Array operations
+const [items, setItems] = useState([]);
+const addItem = (item) => setItems(_________);
+const removeItem = (id) => setItems(_________);
+
+// Object updates
+const [user, setUser] = useState({ name: "", email: "" });
+const updateName = (name) => setUser(_________);
+```
+
+### Q28. useEffect Dependencies
+
+**For each useEffect, what will happen?**
+
+```jsx
+// Effect A
+useEffect(() => {
+  console.log("Effect A runs");
+});
+
+// Effect B
+useEffect(() => {
+  console.log("Effect B runs");
+}, []);
+
+// Effect C
+useEffect(() => {
+  console.log("Effect C runs");
+}, [count]);
+
+// Effect D
+useEffect(() => {
+  console.log("Effect D runs");
+}, [count, user.name]);
+```
+
+**When does each effect run?**
+
+- Effect A: \***\*\_\*\***
+- Effect B: \***\*\_\*\***
+- Effect C: \***\*\_\*\***
+- Effect D: \***\*\_\*\***
+
+### Q29. useEffect Cleanup
+
+**Add appropriate cleanup to these effects:**
+
+```jsx
+// Timer effect
+useEffect(() => {
+  const timer = setInterval(() => {
+    setCount((c) => c + 1);
+  }, 1000);
+
+  return _________; // Add cleanup
+}, []);
+
+// Event listener effect
+useEffect(() => {
+  const handleScroll = () => setScrollY(window.scrollY);
+  window.addEventListener("scroll", handleScroll);
+
+  return _________; // Add cleanup
+}, []);
+
+// Fetch with abort controller
+useEffect(() => {
+  const controller = new AbortController();
+
+  fetch("/api/data", { signal: controller.signal })
+    .then((res) => res.json())
+    .then(setData);
+
+  return _________; // Add cleanup
+}, []);
+```
+
+### Q30. useEffect Best Practices
+
+**Rate these practices as Good ✅ or Bad ❌:**
+
+- [ ] Missing dependencies in dependency array
+- [ ] Using async function directly in useEffect
+- [ ] Multiple useEffect hooks for different concerns
+- [ ] Updating state in useEffect without dependencies
+- [ ] Using empty dependency array for one-time effects
+
+### Q31. State Batching
+
+**What will be the final count value after clicking the button?**
+
+```jsx
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => {
+    setCount(count + 1);
+    setCount(count + 1);
+    setCount(count + 1);
+  };
+
+  return <button onClick={handleClick}>Count: {count}</button>;
+}
+```
+
+**After clicking once, count will be: \*\***\_**\*\***
+
+**How would you fix this to increment by 3?**
+
+```jsx
+const handleClick = () => {
+  _________;
+  _________;
+  _________;
+};
+```
+
+### Q32. Complex State Updates
+
+**Complete this shopping cart reducer pattern with useState:**
+
+```jsx
+function ShoppingCart() {
+  const [cart, setCart] = useState({ items: [], total: 0 });
+
+  const addItem = (product) => {
+    setCart((prevCart) => ({
+      items: _________,
+      total: _________,
+    }));
+  };
+
+  const removeItem = (productId) => {
+    setCart((prevCart) => {
+      const newItems = _________;
+      return {
+        items: newItems,
+        total: _________,
+      };
+    });
+  };
+
+  const updateQuantity = (productId, quantity) => {
+    setCart((prevCart) => ({
+      items: _________,
+      total: _________,
+    }));
+  };
+}
+```
+
+### Q33. useEffect Infinite Loops
+
+**Identify which effects will cause infinite loops and fix them:**
+
+```jsx
+// Effect 1
+const [user, setUser] = useState({});
+useEffect(() => {
+  setUser({ ...user, lastSeen: Date.now() });
+}, [user]); // Problem? _________
+
+// Effect 2
+const [data, setData] = useState([]);
+useEffect(() => {
+  if (data.length === 0) {
+    fetchData().then(setData);
+  }
+}, [data]); // Problem? _________
+
+// Effect 3
+useEffect(() => {
+  const fetchUserData = async () => {
+    const result = await api.getUser();
+    setUser(result);
+  };
+  fetchUserData();
+}, []); // Problem? _________
+```
+
+### Q34. Custom Hook Logic
+
+**Extract this logic into a custom hook:**
+
+```jsx
+// Component using the logic
+function UserProfile({ userId }) {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(`/api/users/${userId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUser(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+        setLoading(false);
+      });
+  }, [userId]);
+
+  return { user, loading, error };
+}
+
+// Create custom hook:
+function useUser(userId) {
+  // Move the logic here
+  _________;
+}
+```
+
+### Q35. Hook Rules
+
+**Which of these violate React Hook rules?**
+
+```jsx
+function Component({ condition }) {
+  // A
+  if (condition) {
+    const [state, setState] = useState(0);
+  }
+
+  // B
+  const [count, setCount] = useState(0);
+
+  // C
+  for (let i = 0; i < 3; i++) {
+    useEffect(() => {}, []);
+  }
+
+  // D
+  const helper = () => {
+    const [value, setValue] = useState("");
+    return value;
+  };
+
+  // E
+  useEffect(() => {
+    if (condition) {
+      const [temp, setTemp] = useState(0);
+    }
+  }, []);
+}
+```
+
+**Violations:** \***\*\_\*\***
+
+---
+
+### ✅ **Final Section Complete!**
+
+**Congratulations! You've completed all 35 theory questions. Take a moment to:**
+
+- Review any questions you found challenging
+- Check your answers against the answer key
+- Calculate your score using the scoring guide
+- Identify areas where you might need more practice
+
+**Ready for hands-on coding? Move on to the coding exercises when you feel confident with the theory!**
+
+---
+
+## Answer Key 🔑
+
+**I'll provide the answer key in a separate file. Work through these questions first, then check your answers!**
+
+**Scoring Guide:**
+
+- 30-35 correct: Expert level 🎯
+- 25-29 correct: Advanced level 🚀
+- 20-24 correct: Intermediate level 📈
+- 15-19 correct: Good foundation 👍
+- Below 15: Review concepts 📚
+
+**Take your time and think through each question. These will help solidify your React knowledge!**
