@@ -1,3 +1,5 @@
+import styles from '../styles/modules/FoodOrderForm.module.css'
+
 function FoodOrderForm(props) {
   const { name, setName } = props;
   const { phone, setPhone } = props;
@@ -6,7 +8,7 @@ function FoodOrderForm(props) {
   const { submit } = props;
 
   return (
-    <form action="#" onSubmit={submit}>
+    <form action="#" onSubmit={submit} className={styles.form}>
       <label htmlFor="name">Name:</label>
       <input
         type="text"

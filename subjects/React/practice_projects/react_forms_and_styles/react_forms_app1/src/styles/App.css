@@ -1,0 +1,11 @@
+.container{
+    background-color: rgb(92, 89, 89);
+    min-height: 100vh;
+    min-width: 50%;
+   justify-self: center;
+   justify-items: center;
+}
+
+h1{
+
+}

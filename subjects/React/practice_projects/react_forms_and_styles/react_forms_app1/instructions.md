@@ -16,8 +16,8 @@ To complete this project, you will use your understanding of controlled React fo
 6.[X] Use React state to control each input field.
 7.[X] Add `onChange` handlers to update state as the user types.
 8.[X] Handle form submission to show an alert with the order details.
-9.[] Add appropriate input types and names for each field.
-10.[] Style the form for a clean user experience.
+9.[X] Add appropriate input types and names for each field.
+10.[X] Style the form for a clean user experience.
 
 ## Consider these extra steps for a complete experience:
 - Validate user input (e.g., require all fields, check phone format).

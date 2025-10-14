@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./styles/App.css";
 import FoodOrderForm from "./components/FoodOrderForm";
+import "./styles/App.css";
 
 function App() {
   const [name, setName] = useState("");
@@ -11,15 +12,23 @@ function App() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    alert(`Your order for ${order} has been placed! \n Show receipt on collection. \n See you soon!` )
+    alert(
+      `Your order for ${order} has been placed! \n Show receipt on collection. \n See you soon!`
+    );
+
+    //Clear form after submission:
+    setName("");
+    setPhone("");
+    setAddress("");
+    setOrder("");
   }
 
   return (
-    <>
-      <div>
+    <div className="container">
+      <section>
         <h1>Saucy Tango</h1>
         <p>Place your order below:</p>
-      </div>
+      </section>
 
       <FoodOrderForm
         name={name}
@@ -32,7 +41,7 @@ function App() {
         setOrder={setOrder}
         submit={handleSubmit}
       />
-    </>
+    </div>
   );
 }
 
