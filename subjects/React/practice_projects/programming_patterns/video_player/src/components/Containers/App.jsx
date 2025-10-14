@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "../../styles/App.css";
+import Menu from "../Presentationals/Menu";
+import Video from "../Presentationals/Video";
 
 function App() {
-  
   //Media to work with:
   const VIDEOS = {
     fast: "https://content.codecademy.com/courses/React/react_video-fast.mp4",
@@ -11,16 +12,25 @@ function App() {
     eek: "https://content.codecademy.com/courses/React/react_video-eek.mp4",
   };
 
+  //State Variable and Setter function:
+  const [src, setSrc] = useState(null);
+
+  //function to update the state:
+  function clickHandler(value){
+    setSrc(VIDEOS[value])
+  }
+
   return (
     <>
       <h1>Video Player</h1>
-      <video
-        src={VIDEOS.slow}
-        controls
-        autostart
-        autoPlay
-        muted
-      ></video>
+      <p>
+        The focus of this app is to use a Programming Pattern for cleaner,
+        reusable and flexible code.
+      </p>
+      <Menu onSelect={clickHandler}/>
+        
+      {src ? <Video src={src}/> : null}
+      
     </>
   );
 }
