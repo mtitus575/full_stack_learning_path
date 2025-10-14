@@ -1,5 +1,15 @@
 import { useState } from "react";
 
+const showVideoStyles ={
+  marginTop: '1rem',
+  border: '2px solid',
+  borderRadius: '5px',
+  paddingTop: '.4rem'
+}
+const showErrorStyles ={
+    fontSize: '1.5rem'
+}
+
 function Video({ src }) {
   //State to manage video loading errors
   const [hasError, setHasError] = useState(false);
@@ -16,7 +26,7 @@ function Video({ src }) {
 
   //Variable holding JSX for error state.
   const showError = (
-    <div className="video-error">
+    <div className="video-error" style={showErrorStyles}>
       <p>Sorry, this video failed to load.</p>
       <p>Please try selecting a different video.</p>
     </div>
@@ -24,7 +34,7 @@ function Video({ src }) {
 
   //Variable holding JSX for success state (no errors).
   const showVideo = (
-    <div>
+    <div style={showVideoStyles}>
       <video
         src={src}
         onLoadStart={handleLoadStart}

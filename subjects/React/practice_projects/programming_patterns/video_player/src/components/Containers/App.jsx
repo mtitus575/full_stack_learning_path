@@ -21,7 +21,7 @@ function App() {
   }
 
   return (
-    <>
+    <div style={{backgroundColor:'pink', borderRadius:10}}>
       <h1>Video Player</h1>
       <p>
         The focus of this app is to use a Programming Pattern for cleaner,
@@ -31,7 +31,7 @@ function App() {
         
       {src ? <Video src={src}/> : null}
       
-    </>
+    </div>
   );
 }
 

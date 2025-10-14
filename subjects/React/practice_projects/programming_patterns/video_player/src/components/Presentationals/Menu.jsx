@@ -1,3 +1,5 @@
+import styles from '../../styles/Menu.module.css';
+
 function Menu({ onSelect }) {
   //Function to handle the click selection with some validation:
   function handleClickChange({ target }) {
@@ -8,7 +10,7 @@ function Menu({ onSelect }) {
   }
 
   return (
-    <div>
+    <div className={styles.box}>
       <h3>Select a video:</h3>
       <form onClick={handleClickChange}>
         <input name="video" value="fast" type="radio" id="fast" />
