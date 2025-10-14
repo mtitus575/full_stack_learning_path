@@ -1,4 +1,4 @@
-import styles from '../styles/modules/FoodOrderForm.module.css'
+import styles from "../styles/modules/FoodOrderForm.module.css";
 
 function FoodOrderForm(props) {
   const { name, setName } = props;
@@ -11,6 +11,7 @@ function FoodOrderForm(props) {
     <form action="#" onSubmit={submit} className={styles.form}>
       <label htmlFor="name">Name:</label>
       <input
+        name="name"
         type="text"
         id="name"
         required
@@ -20,6 +21,7 @@ function FoodOrderForm(props) {
 
       <label htmlFor="phone">Phone:</label>
       <input
+        name="phone"
         type="tel"
         id="phone"
         required
@@ -29,6 +31,7 @@ function FoodOrderForm(props) {
 
       <label htmlFor="address">Address:</label>
       <input
+        name="address"
         type="text"
         id="address"
         required
@@ -38,6 +41,7 @@ function FoodOrderForm(props) {
 
       <label htmlFor="order">Order:</label>
       <input
+        name="order"
         type="text"
         id="order"
         required
