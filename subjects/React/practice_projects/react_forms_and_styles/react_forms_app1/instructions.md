@@ -8,16 +8,16 @@ Your goal is to create a functional form that allows customers to place their or
 To complete this project, you will use your understanding of controlled React forms. You’ll be using the State Hook to manage the state of the form, and employ event handlers to update the state of the form as the customer fills in their details.
 
 ## Objctives
-1. Set up a new React app using Create React App.
-2. Create a `FoodOrderForm` component.
-3. Add a `<form>` with input fields for name, phone, address, and order.
-4. Add labels for each input for accessibility.
-5. Add a submit button to the form.
-6. Use React state to control each input field.
-7. Add `onChange` handlers to update state as the user types.
-8. Handle form submission to show an alert with the order details.
-9. Add appropriate input types and names for each field.
-10. Style the form for a clean user experience.
+1.[X] Set up a new React app using Create React App.
+2.[X] Create a `FoodOrderForm` component.
+3.[X] Add a `<form>` with input fields for name, phone, address, and order.
+4.[X] Add labels for each input for accessibility.
+5.[X] Add a submit button to the form.
+6.[X] Use React state to control each input field.
+7.[X] Add `onChange` handlers to update state as the user types.
+8.[X] Handle form submission to show an alert with the order details.
+9.[] Add appropriate input types and names for each field.
+10.[] Style the form for a clean user experience.
 
 ## Consider these extra steps for a complete experience:
 - Validate user input (e.g., require all fields, check phone format).
