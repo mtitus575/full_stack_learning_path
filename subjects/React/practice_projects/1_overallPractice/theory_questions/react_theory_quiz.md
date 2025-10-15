@@ -11,8 +11,11 @@
 **Answer the following:**
 
 - What problem does the Virtual DOM solve?
+A - The slow update process of the regular DOM. The regular DOM updates the entire page each time which is slow and creates a bad user experience, especially when rapid updates are needed.
 - How does React use the Virtual DOM to optimize performance?
+A - The virtual DOM!==real DOM. It is a copy. React takes a snapshot of the previous version of the real DOM when an update is made. It then compares that snapshot with the snapshot of the DOM after the update. Based on this, it determines which elements changes and then only effect changes to that specific element on the real DOM.
 - What happens during the "reconciliation" process?
+NOTE: A - Reconciliation is React's process of comparing (DIFFING) the new Virtual DOM tree with the previous one, identifying what changed, and UPDATING only those specific nodes in the real DOM.
 
 ### Q2. Compare Virtual DOM vs Real DOM
 
@@ -20,31 +23,36 @@
 
 | Aspect              | Virtual DOM    | Real DOM       |
 | ------------------- | -------------- | -------------- |
-| Performance         | \***\*\_\*\*** | \***\*\_\*\*** |
-| Memory Usage        | \***\*\_\*\*** | \***\*\_\*\*** |
-| Update Speed        | \***\*\_\*\*** | \***\*\_\*\*** |
-| Direct Manipulation | \***\*\_\*\*** | \***\*\_\*\*** |
+| Performance         | \***\*\FAST\*\*** | \***\*\SLOW\*\*** |
+| Memory Usage        | \***\*\Minimal\*\*** | \***\*\Large\*\*** |
+| Update Speed        | \***\*\Rapid\*\*** | \***\*\Can be slow\*\*** |
+| Direct Manipulation | \***\*\No\*\*** | \***\*\Yes\*\*** |
 
 ### Q3. Virtual DOM Workflow
 
 **Order these steps (1-5) in the correct Virtual DOM update process:**
 
-- [ ] Compare new Virtual DOM tree with previous Virtual DOM tree
-- [ ] Apply minimal changes to Real DOM
-- [ ] State change triggers re-render
-- [ ] Create new Virtual DOM tree
-- [ ] Calculate differences (diffing algorithm)
+- [3] Compare new Virtual DOM tree with previous Virtual DOM tree
+- [5] Apply minimal changes to Real DOM
+- [1] State change triggers re-render
+- [2] Create new Virtual DOM tree
+- [4] Calculate differences (diffing algorithm)
 
 ### Q4. True/False - Virtual DOM Concepts
 
-- [ ] T/F: Virtual DOM is faster than Real DOM in all scenarios
-- [ ] T/F: Virtual DOM is a JavaScript representation of the Real DOM
-- [ ] T/F: React updates the entire Real DOM on every state change
-- [ ] T/F: Virtual DOM helps with predictable UI updates
+- [X] T/F: Virtual DOM is faster than Real DOM in all scenarios
+- [X] T/F: Virtual DOM is a JavaScript representation of the Real DOM
+- [F] T/F: React updates the entire Real DOM on every state change
+- [T] T/F: Virtual DOM helps with predictable UI updates
 
 ### Q5. Scenario Question
 
 **You have a list of 1000 items, and only 1 item changes. Explain how the Virtual DOM handles this update efficiently compared to directly manipulating the Real DOM.**
+- It creates a new virtual DOM tree and compares it with a snapshot it took from the previous version.
+- It then compares the differences, finds the exact changes, and only updates those elements.
+- This is better than updating the real DOM as it would re-render the entire list of 1000 items, instead of just the 1 that changed.
+- Since it uses lightweight copies to perform diffing, the virtual DOM is much faster to compare and update the DOM. It is also less resource hungry.
+- React uses keys to very efficiently identify which specific item changed in a list.
 
 ---
 
