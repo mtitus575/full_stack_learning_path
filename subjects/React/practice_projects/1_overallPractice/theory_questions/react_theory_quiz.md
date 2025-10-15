@@ -11,22 +11,22 @@
 **Answer the following:**
 
 - What problem does the Virtual DOM solve?
-A - The slow update process of the regular DOM. The regular DOM updates the entire page each time which is slow and creates a bad user experience, especially when rapid updates are needed.
+  A - The slow update process of the regular DOM. The regular DOM updates the entire page each time which is slow and creates a bad user experience, especially when rapid updates are needed.
 - How does React use the Virtual DOM to optimize performance?
-A - The virtual DOM!==real DOM. It is a copy. React takes a snapshot of the previous version of the real DOM when an update is made. It then compares that snapshot with the snapshot of the DOM after the update. Based on this, it determines which elements changes and then only effect changes to that specific element on the real DOM.
+  A - The virtual DOM!==real DOM. It is a copy. React takes a snapshot of the previous version of the real DOM when an update is made. It then compares that snapshot with the snapshot of the DOM after the update. Based on this, it determines which elements changes and then only effect changes to that specific element on the real DOM.
 - What happens during the "reconciliation" process?
-NOTE: A - Reconciliation is React's process of comparing (DIFFING) the new Virtual DOM tree with the previous one, identifying what changed, and UPDATING only those specific nodes in the real DOM.
+  NOTE: A - Reconciliation is React's process of comparing (DIFFING) the new Virtual DOM tree with the previous one, identifying what changed, and UPDATING only those specific nodes in the real DOM.
 
 ### Q2. Compare Virtual DOM vs Real DOM
 
 **Fill in the comparison table:**
 
-| Aspect              | Virtual DOM    | Real DOM       |
-| ------------------- | -------------- | -------------- |
-| Performance         | \***\*\FAST\*\*** | \***\*\SLOW\*\*** |
-| Memory Usage        | \***\*\Minimal\*\*** | \***\*\Large\*\*** |
-| Update Speed        | \***\*\Rapid\*\*** | \***\*\Can be slow\*\*** |
-| Direct Manipulation | \***\*\No\*\*** | \***\*\Yes\*\*** |
+| Aspect              | Virtual DOM          | Real DOM                 |
+| ------------------- | -------------------- | ------------------------ |
+| Performance         | \***\*\FAST\*\***    | \***\*\SLOW\*\***        |
+| Memory Usage        | \***\*\Minimal\*\*** | \***\*\Large\*\***       |
+| Update Speed        | \***\*\Rapid\*\***   | \***\*\Can be slow\*\*** |
+| Direct Manipulation | \***\*\No\*\***      | \***\*\Yes\*\***         |
 
 ### Q3. Virtual DOM Workflow
 
@@ -40,14 +40,15 @@ NOTE: A - Reconciliation is React's process of comparing (DIFFING) the new Virtu
 
 ### Q4. True/False - Virtual DOM Concepts
 
-- [X] T/F: Virtual DOM is faster than Real DOM in all scenarios
-- [X] T/F: Virtual DOM is a JavaScript representation of the Real DOM
+- [x] T/F: Virtual DOM is faster than Real DOM in all scenarios
+- [x] T/F: Virtual DOM is a JavaScript representation of the Real DOM
 - [F] T/F: React updates the entire Real DOM on every state change
 - [T] T/F: Virtual DOM helps with predictable UI updates
 
 ### Q5. Scenario Question
 
 **You have a list of 1000 items, and only 1 item changes. Explain how the Virtual DOM handles this update efficiently compared to directly manipulating the Real DOM.**
+
 - It creates a new virtual DOM tree and compares it with a snapshot it took from the previous version.
 - It then compares the differences, finds the exact changes, and only updates those elements.
 - This is better than updating the real DOM as it would re-render the entire list of 1000 items, instead of just the 1 that changed.
@@ -81,6 +82,10 @@ const element = <h1 className="greeting">Hello, World!</h1>;
 ```
 
 Write the equivalent `React.createElement()` call:
+A - React.createElement('h1', { className: 'greeting' }, 'Hello, World!')
+-- JSX is syntactic sugar for React.createElement() calls
+-- The pattern is: React.createElement(type, props, children)
+-- Your answer mixed up rendering with element creation
 
 ### Q7. JSX Rules
 
@@ -89,12 +94,16 @@ Write the equivalent `React.createElement()` call:
 ```jsx
 function BadComponent() {
   return (
-    <h1>Welcome</h1>
-    <p>This is a paragraph</p>
-    <button onclick="handleClick()">Click me</button>
+    <div>
+      <h1>Welcome</h1>
+      <p>This is a paragraph</p>
+      <button onClick={handleClick}>Click me</button>
+    </div>
   );
 }
 ```
+
+A - It did not have a single outermost element. Also removed the parenthesis from the eventHandler to prevent it calling immediately.
 
 ### Q8. Expressions in JSX
 
@@ -109,16 +118,16 @@ const courses = ["React", "JavaScript", "CSS"];
 // What renders?
 {
   name;
-} // Result: _________
+} // Result: __Alice_______
 {
   age > 18 ? "Adult" : "Minor";
-} // Result: _________
+} // Result: ____Adult_____
 {
   isStudent && "Student";
-} // Result: _________
+} // Result: ____Student_____
 {
   courses.length;
-} // Result: _________
+} // Result: ___3______
 ```
 
 ### Q9. Conditional Rendering Patterns
@@ -128,22 +137,23 @@ const courses = ["React", "JavaScript", "CSS"];
 ```jsx
 // Pattern 1: Ternary operator
 {
-  isLoggedIn ? _________ : _________;
+  isLoggedIn ? "welcome" : "Login failed";
 }
 
 // Pattern 2: Logical AND
 {
-  showMessage && _________;
+  showMessage && "Message to show";
 }
 
 // Pattern 3: Logical OR (default values)
 {
-  userName || _________;
+  userName || "Guest";
 }
 
 // Pattern 4: Multiple conditions
 {
-  isAdmin ? _________ : isModerator ? _________ : _________;
+  {isAdmin ? "Welcome admin" : isModerator ? "Welcome moderator" : "Welcome user"}
+  // Explained: The structure should be: condition1 ? result1 : condition2 ? result2 : fallback
 }
 ```
 
@@ -155,12 +165,17 @@ const courses = ["React", "JavaScript", "CSS"];
 const items = ["apple", "banana", "orange"];
 return (
   <ul>
-    {items.map((item) => (
-      <li>{item}</li>
-    ))}
+    {items.map((item, index) => {
+      return <li key={index}>{item}</li>;
+    })}
   </ul>
 );
 ```
+A : 
+-- The "issue" many developers worry about:
+--- Using index as key can cause problems when list order changes
+--- However, for static lists that don't reorder, index keys are acceptable
+--- Better practice: use unique IDs when available
 
 ### Q11. Event Handlers in JSX
 
@@ -168,16 +183,16 @@ return (
 
 ```jsx
 // Inline function
-<button onClick={_________}>Click me</button>
+<button onClick={(e)=> alert(`The button was clicked`)}>Click me</button>
 
 // Function reference
-<button onClick={_________}>Click me</button>
+<button onClick={handkeClick}>Click me</button>
 
 // Function with parameters
-<button onClick={_________}>Delete Item</button>
+<button onClick={()=> handleClick(itemId)}>Delete Item</button>
 
 // Form submission
-<form onSubmit={_________}>
+<form onSubmit={handleSubmit}>
 ```
 
 ### Q12. JSX Attributes
@@ -193,19 +208,19 @@ return (
 
 ```jsx
 {/* JSX */}
-<div _________ _________ _________></div>
-<label _________>Email:</label>
-<input type="text" _________>
+<div className="container" htmlFor="email" tabIndex="0"></div>
+<label htmlFor="email">Email:</label>
+<input type="text" readOnly />
 ```
 
 ### Q13. JSX Best Practices
 
 **Rate these practices as Good ✅ or Bad ❌ and explain why:**
 
-- [ ] Using index as key in lists: \***\*\_\*\***
-- [ ] Inline styles in JSX: \***\*\_\*\***
-- [ ] Arrow functions in render: \***\*\_\*\***
-- [ ] Fragment shorthand `<></>`: \***\*\_\*\***
+- [Bad] Using index as key in lists: \***\*\Can cause rendering bugs when list order changes. React can't efficiently track which items changed\*\***
+- [Bad] Inline styles in JSX: \***\*\Quickly becomes messy and hard to track when multiple styles are needed.\*\***
+- [Bad] Arrow functions in render: \***\*\Creates new function on every render. Can cause unnecessary re-renders\*\***
+- [Good] Fragment shorthand `<></>`: \***\*\Lightweight and removes the need to style a div but provides an outermost parent element\*\***
 
 ---
 
