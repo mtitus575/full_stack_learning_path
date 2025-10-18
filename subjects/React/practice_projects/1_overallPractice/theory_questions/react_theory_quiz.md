@@ -152,7 +152,13 @@ const courses = ["React", "JavaScript", "CSS"];
 
 // Pattern 4: Multiple conditions
 {
-  {isAdmin ? "Welcome admin" : isModerator ? "Welcome moderator" : "Welcome user"}
+  {
+    isAdmin
+      ? "Welcome admin"
+      : isModerator
+      ? "Welcome moderator"
+      : "Welcome user";
+  }
   // Explained: The structure should be: condition1 ? result1 : condition2 ? result2 : fallback
 }
 ```
@@ -171,7 +177,8 @@ return (
   </ul>
 );
 ```
-A : 
+
+A :
 -- The "issue" many developers worry about:
 --- Using index as key can cause problems when list order changes
 --- However, for static lists that don't reorder, index keys are acceptable
@@ -247,12 +254,12 @@ A :
 ```jsx
 // Convert this functional component to use proper React syntax
 function Welcome() {
-  const [name, setName] = _________;
+  const [name, setName] = useState("");
 
   return (
     <div>
-      <h1>Hello, {_________}!</h1>
-      <input value={_________} onChange={_________} />
+      <h1>Hello, {name}!</h1>
+      <input value={name} onChange={(e) => setName(e.target.value)} />
     </div>
   );
 }
@@ -271,9 +278,16 @@ const [items, setItems] = useState([]);
 **Answer:**
 
 - What is the initial state for each variable?
+  A -
+  count = 0
+  user = { name: "", age: 0 }
+  items = []
 - How would you update `count` by 1?
+  A - setCount(prev=> prev +1)
 - How would you update only the user's name?
+  A - setUser(prev => ({...prev, name:'New User Name'}))
 - How would you add an item to the `items` array?
+  A - setItems(prev => [...prev, newItem])
 
 ### Q16. State Management Scenarios
 
@@ -286,6 +300,7 @@ const [isVisible, setIsVisible] = useState(false);
 // Correct way to toggle:
 a) setIsVisible(!isVisible)
 b) setIsVisible(prev => !prev)
+//b is correct - This is the correct answer. The next state is based on the previous state and prevent using outdated state
 c) Both are correct
 d) Neither is correct
 ```
@@ -297,6 +312,7 @@ const [user, setUser] = useState({ name: 'John', age: 30 });
 // Correct way to update only age:
 a) setUser({ age: 31 })
 b) setUser({ ...user, age: 31 })
+//b is correct - you copy the original and replace only the needed property.
 c) user.age = 31; setUser(user)
 d) setUser(prev => prev.age = 31)
 ```
@@ -305,12 +321,12 @@ d) setUser(prev => prev.age = 31)
 
 **Match the Class Component lifecycle methods with their Hook equivalents:**
 
-| Class Component       | Hook Equivalent |
-| --------------------- | --------------- |
-| componentDidMount     | \***\*\_\*\***  |
-| componentDidUpdate    | \***\*\_\*\***  |
-| componentWillUnmount  | \***\*\_\*\***  |
-| shouldComponentUpdate | \***\*\_\*\***  |
+| Class Component       | Hook Equivalent                           |
+| --------------------- | ----------------------------------------- | ----------------------- |
+| componentDidMount     | \***\*\useEffect(()=>{},[])\*\***         |
+| componentDidUpdate    | \***\*\useEffect(()=>{})\*\***            |
+| componentWillUnmount  | \***\*\useEffect() cleanup function\*\*** |
+| shouldComponentUpdate | \***\*\useMemo()\*\***                    | //I don't know this yet |
 
 ### Q18. Form Handling
 
@@ -326,20 +342,21 @@ function ContactForm() {
 
   const handleChange = (e) => {
     setFormData({
-      _________,
-      [_________]: _________,
+      ...formData,
+      [e.target.value]: e.target.value,
     });
   };
 
   const handleSubmit = (e) => {
-    _________;
+    e.preventDefault();
     console.log("Form submitted:", formData);
   };
 
   return (
-    <form onSubmit={_________}>
-      <input name="name" value={_________} onChange={_________} />
-      {/* Complete for email and message */}
+    <form onSubmit={handleSubmit}>
+      <input name="name" value={formData.name} onChange={handlChange} />
+      <input name="email" value={formData.email} onChange={handlChange} />
+      <input name="message" value={formData.message} onChange={handlChange} />
     </form>
   );
 }
@@ -358,25 +375,25 @@ const items = [];
 {
   isLoggedIn ? <Dashboard /> : <Login />;
 }
-// Renders: _________
+// Renders: <Login />
 
 // Case 2:
 {
   user && <Profile user={user} />;
 }
-// Renders: _________
+// Renders: Nothing is rendered
 
 // Case 3:
 {
-  items.length > 0 && <ItemList items={items} />;
+  items.length > 0 && <ItemList items={items} />; //Note to me: Use this logic for the playlist rendering in the music app
 }
-// Renders: _________
+// Renders: nothing is rendered
 
 // Case 4:
 {
   items.length ? <ItemList items={items} /> : <EmptyState />;
 }
-// Renders: _________
+// Renders: <EmptyState />
 ```
 
 ### Q20. Component Composition
@@ -400,6 +417,23 @@ BlogPost (parent)
 ```
 
 **Which components need props? What props would they receive?**
+Answer:
+
+```
+BlogPost (props: post object with all data)
+├── BlogHeader (props=title, author, publishInfo)
+     ├── Title
+     ├── Author
+     └── PublishDate
+├── BlogContent (props=content, image)
+     ├── Paragraph
+     ├── Image
+     └── CodeBlock
+└── BlogFooter (props: tags, likeCount, onLike, onShare)
+    ├── Tags
+    ├── LikeButton
+    └── ShareButtons
+```
 
 ---
 
