@@ -490,9 +490,15 @@ function UserCard({ user, onClick }) {
 **Questions:**
 
 - What props does `UserList` receive?
+  A - users (an array of objects)
+  A - onUserSelect (an eventHandler function)
 - What props does `UserCard` receive?
+  A - user (an object)
+  A - onClick (the event handler with the userId as a param)
 - How does data flow from App to UserCard?
+  A - The data is flowing unidirectionally, from the parent down.
 - How does user interaction flow back to App?
+  A - through each prop that it was initially passed down on - in reverse. (from userCard to userList and then App)
 
 ### Q22. State Lifting
 
@@ -507,33 +513,76 @@ Parent
 **Answer:**
 
 - Where should the `total` state be placed?
+  A - in the parent as it will be the source of truth for the state and then the children get the state via props (ensures it is always the same)
 - How will ComponentA access the total?
+  A - with the state variable passed to it via props
 - How will ComponentB update the total?
+  A - with the setter function passed to it via props
 - What props need to be passed down?
+  A - componentA gets the state variable and componentB gets the setter function
 
 ### Q23. Props Validation
 
 **Add appropriate prop validation:**
 
 ```jsx
+import PropTypes from "prop-types";
+
 function ProductCard({ name, price, isOnSale, tags, onAddToCart }) {
   // Component implementation
 }
 
 // Add PropTypes validation:
 ProductCard.propTypes = {
-  name: _________,
-  price: _________,
-  isOnSale: _________,
-  tags: _________,
-  onAddToCart: _________,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  isOnSale: PropTypes.bool,
+  tags: PropTypes.array,
+  onAddToCart: PropTypes.func,
 };
 
 ProductCard.defaultProps = {
-  isOnSale: _________,
-  tags: _________,
+  isOnSale: false,
+  tags: [],
 };
 ```
+
+> PropTypes Lesson:
+
+1. What are PropTypes?
+   -- It is used to check whether a component receives the right type of data.
+   -- Helps to catch bugs: They warn you in development if you pass wrong data types!
+
+2. How to use it:
+   -- import `PropTypes from 'prop-types` at the top of the file.
+   -- Define your component as usual.
+   -- After the component, in the same file, add the a validation.
+   -- You can also set default props, after the component, for any optional items.
+
+3. Syntax:
+import PropTypes from 'prop-types'
+
+function ComponentName({name, age, isActive}){
+return <div>{name} is {age} years old.</div>
+};
+
+ComponentName.propTypes = {
+name: PropTypes.string.isRequired,
+age: PropTypes.number.isRequired,
+isActive: PropTypes.bool
+};
+
+ComponentName.defaultProps = {
+isActive: false
+};
+
+4. Common PropTypes:
+   -- PropTypes.string - text
+   -- PropTypes.number - numbers
+   -- PropTypes.bool - true/false
+   -- PropTypes.array - lists
+   -- PropTypes.func - functions
+   -- PropTypes.object - objects
 
 ### Q24. Component Communication Patterns
 
@@ -541,10 +590,10 @@ ProductCard.defaultProps = {
 
 | Pattern      | Scenario       |
 | ------------ | -------------- |
-| Props down   | \***\*\_\*\*** |
-| Callbacks up | \***\*\_\*\*** |
-| Context API  | \***\*\_\*\*** |
-| Custom hooks | \***\*\_\*\*** |
+| Props down   | \***\*\C\*\*** |
+| Callbacks up | \***\*\B\*\*** |
+| Context API  | \***\*\A\*\*** |
+| Custom hooks | \***\*\D\*\*** |
 
 Scenarios:
 A) Sharing theme data across entire app
@@ -570,11 +619,11 @@ function DataFetcher({ url, render }) {
       });
   }, [url]);
 
-  return _________(data, loading);
+  return render(data, loading);
 }
 
 // Usage:
-<DataFetcher url="/api/users" render={(data, loading) => _________} />;
+<DataFetcher url="/api/users" render={(data, loading) => loading ? <div>Loading...</div>} : <UserList users={data}/>;
 ```
 
 ### Q26. Key Prop Understanding
@@ -600,8 +649,25 @@ Scenario B: Using unique ID as key
 **When you delete the first item from the array:**
 
 - What happens with index keys?
+  A - All the indexes change as indexes are zero indexed. SO there is always going to be an index 0 for example.
+  A - this is not good. The indexes can change and React will not know which elements have changed it index
 - What happens with ID keys?
+  A - best practice as it allows react to instantly make changes when changes are made to the specific item
 - Which is better and why?
+  A - unique keys as it allows react to instantly make changes when changes are made to the specific item
+
+> Keyin React Lesson:
+
+1. What are keys?
+   -- Keys help React identify which items in a LIST have changed, been added, or removed.
+
+2. Problem with using indexes as the keys:
+   -- When any item in an array or object is deleted or added, it shifts the indexes for the remaining items.
+   -- Since the indexes shift, react does not know that an item was removed and will think that an item changed.
+   -- It thus causes rendering bugs.
+
+3. Solution = use UNIQUE id values as the keys.
+   -- use the id property in objects as the key as this does not change, like the index would.
 
 ---
 
