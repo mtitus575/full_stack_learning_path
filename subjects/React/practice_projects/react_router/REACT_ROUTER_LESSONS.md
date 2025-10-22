@@ -62,7 +62,9 @@
        ---> gmail.com/sent shows the sent emails.
        ---> gmail.com/drafts shows the drafts.
 
-- [ ] **Lesson 2:** Basic Setup
+  <------------------>
+
+- [x] **Lesson 2:** Basic Setup
 
   - Installing React Router DOM
     **Step 1**
@@ -134,9 +136,58 @@
       --> BrowserRouter is not defined
       ---- The fix: Check the `import` statement.
 
-- [ ] **Lesson 3:** Your First Route
-  - Creating a simple Home page route
-  - Understanding the Route component
+  <------------------>
+
+- [x] **Lesson 3:** Your First Route
+
+  - Creating a simple Home page route to understand the `Route` component.
+    -- To create a Home page that shows when someone visits the main URL (/):
+
+  1. Create a Home page COMPONENT (normal JSX with content as desired. Export it to you App.jsx)
+     -- Example code:
+
+     ```jsx
+     function Home() {
+       return (
+         <div>
+           <h1>Welcome to My Website! 🏠</h1>
+           <p>This is the home page.</p>
+         </div>
+       );
+     }
+
+     export default Home;
+     ```
+
+  2. In the App.jsx, import the following:
+     2.1 `BrowserRouter, Routes, Route`
+     2.2 `Home` component
+  3. Create the first Route:
+     3.1 Nest `Routes` inside the `BrowserRouter` wrapper.
+     3.2 Then nest `Route` inside the `Routes` container.
+     3.3 INSIDE the `Route` component, use the `path` and `element` props.
+     3.3.1 The `path` prop === the URL path, starting from the `/`, which represent the homepage (The ROOT URL)
+     3.3.2 The `element` prop takes a value, which is the ACTUAL COMPONENT to render when the URL path matches.
+
+  ```jsx
+  import { BrowserRouter, Routes, Route } from "react-router-dom";
+  import Home from "./pages/Home";
+  import "./App.css";
+
+  function App() {
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
+    );
+  }
+
+  export default App;
+  ```
+
+  <=================================================================================================>
 
 ### **Phase 2: Core Routing** 🚀
 
@@ -145,19 +196,28 @@
   - Adding About and Contact page routes
   - Understanding the Routes component
 
+  <------------------>
+
 - [ ] **Lesson 5:** Navigation Links
 
   - Using `<Link>` component vs regular `<a>` tags
   - Why Link prevents page refreshes
+
+  <------------------>
 
 - [ ] **Lesson 6:** Active Links
 
   - Using `<NavLink>` for navigation menus
   - Highlighting the current page automatically
 
+  <------------------>
+
 - [ ] **Lesson 7:** 404 Pages
+
   - Handling unknown routes with your NotFound.jsx
   - Using the catch-all route pattern
+
+  <=================================================================================================>
 
 ### **Phase 3: Dynamic Routing** ⚡
 
@@ -166,14 +226,21 @@
   - Creating routes with parameters like `/user/:id`
   - Understanding dynamic route patterns
 
+  <------------------>
+
 - [ ] **Lesson 9:** Reading Parameters
 
   - Using the `useParams()` hook
   - Accessing URL parameters in components
 
+  <------------------>
+
 - [ ] **Lesson 10:** Nested Routes
+
   - Creating routes inside other routes
   - Building hierarchical navigation
+
+  <=================================================================================================>
 
 ### **Phase 4: Advanced Features** 🎯
 
@@ -182,20 +249,30 @@
   - Using the `useNavigate()` hook
   - Redirecting users after form submissions
 
+  <------------------>
+
 - [ ] **Lesson 12:** Route Protection
 
   - Basic authentication routing
   - Protecting pages that require login
 
+  <------------------>
+
 - [ ] **Lesson 13:** Layout Components
+
   - Creating shared headers and footers
   - Using Outlet for nested route content
+
+  <=================================================================================================>
 
 ### **Phase 5: Practice** 🏆
 
 - [ ] **Lesson 14:** Mini Project
+
   - Building a complete multi-page app
   - Putting all concepts together
+
+  <=================================================================================================>
 
 ---
 
