@@ -524,7 +524,7 @@ export default Navigation;
 
 <------------------>
 
-- [X] **Lesson 7:** 404 Pages
+- [x] **Lesson 7:** 404 Pages
 
 - Using the catch-all route pattern
 
@@ -567,7 +567,6 @@ export default Navigation;
 </Routes>
 ```
 
-
 <=================================================================================================>
 
 ### **Phase 3: Dynamic Routing** ⚡
@@ -575,9 +574,141 @@ export default Navigation;
 - [ ] **Lesson 8:** URL Parameters
 
 - Creating routes with parameters like `/user/:id`
-- Understanding dynamic route patterns
 
-<------------------>
+  1. Create a component for a user.
+  2. import and use the useParams function that returns an `id`
+
+  ```jsx
+  import { useParams } from "react-router-dom";
+
+  function UserProfile() {
+    const { id } = useParams();
+
+    return (
+      <div style={{ padding: "20px" }}>
+        <h1>User Profile 👤</h1>
+        <div
+          style={{
+            background: "#f0f8ff",
+            padding: "15px",
+            borderRadius: "5px",
+            marginTop: "20px",
+          }}
+        >
+          <h2>User ID: {id}</h2>
+          <p>
+            This is the profile page for user with ID: <strong>{id}</strong>
+          </p>
+          <p>In a real app, you'd fetch user data from an API using this ID!</p>
+        </div>
+      </div>
+    );
+  }
+
+  export default UserProfile;
+  ```
+
+  3. Use Dyanamic `path` values with `:` after the forward stroke for different users/items/etc:
+
+  ```jsx
+  import { BrowserRouter, Routes, Route } from "react-router-dom";
+  import Navigation from "./components/Navigation";
+  import Home from "./pages/Home";
+  import About from "./pages/About";
+  import Contact from "./pages/Contact";
+  import UserProfile from "./pages/UserProfile";
+  {
+    /*This is the component for the Dynamic route*/
+  }
+  import NotFound from "./pages/NotFound";
+  import "./App.css";
+
+  function App() {
+    return (
+      <BrowserRouter>
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/user/:id" element={<UserProfile />} /> {/*This is the  Dynamic route*/}
+          <Route path="\*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    );
+  }
+
+  export default App;
+  ```
+
+  3.  Testing:
+      3.1 Try these URLs in your browser:
+      3.1.1 localhost:3000/user/123 → Shows "User ID: 123"
+      3.1.2 localhost:3000/user/alice → Shows "User ID: alice"
+      3.1.3 localhost:3000/user/john-doe → Shows "User ID: john-doe"
+      3.1.4 localhost:3000/user/999 → Shows "User ID: 999"
+
+- Understanding dynamic route patterns:
+
+```jsx
+<Route path="/user/:id" element={<UserProfile />} />
+```
+
+1. The `:id` syntax:
+   1.1 `:id` is a parameter placeholer (this can be named anything)
+   1.2 It captures whatever comes after `/user/`
+   1.3 The captures value is then available in your component through the `useParams()`method.
+   1.3.1 You must use "Object destructuring" to access it.
+
+2. Mutiple parameters can be obtained from ONE route:
+
+```jsx
+// Route with multiple parameters
+<Route path="/user/:userId/post/:postId" element={<UserPost />} />;
+
+// Component accessing multiple parameters
+function UserPost() {
+  const { userId, postId } = useParams();
+
+  return (
+    <div>
+      <h1>
+        Post {postId} by User {userId}
+      </h1>
+    </div>
+  );
+}
+```
+
+2.1 Example URLs for the above:
+-- `/user/123/post/456` → userId: "123", postId: "456"
+-- `/user/alice/post/hello-world` → userId: "alice", postId: "hello-world"
+
+3. Common Parameter Patterns:
+
+```jsx
+// User profiles
+<Route path="/user/:username" element={<UserProfile />} />
+
+// Product pages
+<Route path="/product/:productId" element={<Product />} />
+
+// Blog posts
+<Route path="/blog/:slug" element={<BlogPost />} />
+
+// Categories with items
+<Route path="/category/:categoryId/item/:itemId" element={<Item />} />
+```
+
+4. You can add navigation links in the app that has a `path` to the `/user/:id` such as `/user/alice`.
+   -- When this link is clicked, it routes to user URL and adds the unique id.
+
+5. Key Rules:
+   -- Parameters are ALWAYS strings.
+   -- Parameter names can be ANYTHING (:id, :username, :slug)
+   -- Parameters are required (route will not match without them)
+   -- Parameters can contain letters, numbers, hyphens, underscores.
+   <------------------>
 
 - [ ] **Lesson 9:** Reading Parameters
 

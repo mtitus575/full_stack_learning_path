@@ -20,6 +20,8 @@ function Navigation() {
     color: "#007bff",
   };
 
+  const userId = "John Cena";
+
   return (
     <ul style={{ display: "flex", gap: "1rem", listStyle: "none" }}>
       <li>
@@ -52,6 +54,16 @@ function Navigation() {
           style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
         >
           Signup
+        </NavLink>
+      </li>
+
+      <li>
+        {/*This is a DYNAMIC Link, using a Parameter */}
+        <NavLink
+          to={`/user/${userId}`}
+          style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+        >
+          User: {userId}
         </NavLink>
       </li>
     </ul>
