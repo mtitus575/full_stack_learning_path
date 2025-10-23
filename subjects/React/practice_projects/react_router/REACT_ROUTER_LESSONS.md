@@ -150,7 +150,7 @@
      function Home() {
        return (
          <div>
-           <h1>Welcome to My Website! 🏠</h1>
+           <h1>Welcome to My Website!</h1>
            <p>This is the home page.</p>
          </div>
        );
@@ -191,88 +191,256 @@
 
 ### **Phase 2: Core Routing** 🚀
 
-- [ ] **Lesson 4:** Multiple Routes
+- [x] **Lesson 4:** Multiple Routes
 
   - Adding About and Contact page routes
-  - Understanding the Routes component
+    **Step 1:** Create an About component:
 
-  <------------------>
+  ```jsx
+  function About() {
+    return (
+      <div>
+        <h1>About Us 👥</h1>
+        <p>We are a company that builds awesome React apps!</p>
+        <p>Founded in 2023, we love helping people learn React Router.</p>
+      </div>
+    );
+  }
+  export default About;
+  ```
 
-- [ ] **Lesson 5:** Navigation Links
+  **Step 2:** Create an Contact component:
 
-  - Using `<Link>` component vs regular `<a>` tags
-  - Why Link prevents page refreshes
+  ```jsx
+  function Contact() {
+    return (
+      <div>
+        <h1>Contact Us 📧</h1>
+        <p>Get in touch with us!</p>
+        <ul>
+          <li>Email: hello@example.com</li>
+          <li>Phone: (555) 123-4567</li>
+          <li>Address: 123 React Street</li>
+        </ul>
+      </div>
+    );
+  }
+  export default Contact;
+  ```
 
-  <------------------>
+  **Step 3:** Add multiple Routes to the App.jsx:
+
+  ```jsx
+  import { BrowserRouter, Routes, Route } from "react-router-dom";
+  import Home from "./pages/Home";
+  import About from "./pages/About";
+  import Contact from "./pages/Contact";
+  import "./App.css";
+
+  function App() {
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </BrowserRouter>
+    );
+  }
+
+  export default App;
+  ```
+
+- Understanding the Routes component
+
+```jsx
+<Routes>
+  <Route path="/" element={<Home />} />
+  <Route path="/about" element={<About />} />
+  <Route path="/contact" element={<Contact />} />
+</Routes>
+```
+
+-- How it works:
+
+- React Router looks at the current URL and compares it to EACH `path`, from top-to-bottom.
+- When it finds a match, it renders that `element`
+- Only ONE route renders at a time.
+  ** The browser back and forward buttons will now work.
+  ** URLs that do not match a `path` renders nothing (no default has been set yet)
+
+-- Key Rules:
+
+1. Routes MUST match exactly -> /about only matches /about and not /about/team.
+2. The Order matters -> Routes are checked from Top to Bottom.
+3. Routes are case sensitive -> /About !==/about
+4. Forward slash matters -> /about !== about
+
+<------------------>
+
+- [x] ## **Lesson 5:** Navigation Links
+  -- Syntax for adding navigation:
+
+**Step1:** Create a navigation component:
+
+```jsx
+import { Link } from "react-router-dom";
+
+function Navigation() {
+  return (
+    <nav style={{ padding: "20px", borderBottom: "1px solid #ccc" }}>
+      <Link to="/" style={{ marginRight: "20px" }}>
+        Home
+      </Link>
+      <Link to="/about" style={{ marginRight: "20px" }}>
+        About
+      </Link>
+      <Link to="/contact" style={{ marginRight: "20px" }}>
+        Contact
+      </Link>
+    </nav>
+  );
+}
+
+export default Navigation;
+```
+
+**Step 2:** Add navigation to the App.jsx
+
+```jsx
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navigation from "./components/Navigation";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import "./App.css";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Navigation />{" "}
+      {/* Look at the placement of this Component. It is the `Routes` Sibling and NOT child */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+```
+
+- Using `<Link>` component vs regular `<a>` tags
+
+1. `<a> `tags:
+   -- The browser makes a new HTTP request
+   -- Server then send an entire HTML page
+   -- JavaScript starts from scratch
+   -- The app loses state, and this is slow.
+
+2. `<Link>` tags:
+   -- The React Router intercepts the click
+   -- It updates the URL without a HTTP request
+   -- Swaps components instantly
+   -- This is fast and PRESERVES app STATE.
+
+2.1 Important `<Link>` properties:
+
+```jsx
+// Basic link
+<Link to="/about">About</Link>
+
+// Link with custom styling
+<Link to="/contact" style={{ color: 'blue' }}>
+  Contact Us
+</Link>
+
+// Link with CSS classes
+<Link to="/home" className="nav-link">
+  Home
+</Link>
+```
+
+- Navigation Best Practices:
+
+1. ALways use <Link> for internal navigation.
+2. Use <a> tags for external navigation.
+3. Place Navigation OUTSIDE <Routes/> = Allows it to SHOW on EVERY page.
+4. Keep navigation consistent accross pages.
+
+<------------------>
 
 - [ ] **Lesson 6:** Active Links
 
-  - Using `<NavLink>` for navigation menus
-  - Highlighting the current page automatically
+- Using `<NavLink>` for navigation menus
+- Highlighting the current page automatically
 
-  <------------------>
+<------------------>
 
 - [ ] **Lesson 7:** 404 Pages
 
-  - Handling unknown routes with your NotFound.jsx
-  - Using the catch-all route pattern
+- Handling unknown routes with your NotFound.jsx
+- Using the catch-all route pattern
 
-  <=================================================================================================>
+<=================================================================================================>
 
 ### **Phase 3: Dynamic Routing** ⚡
 
 - [ ] **Lesson 8:** URL Parameters
 
-  - Creating routes with parameters like `/user/:id`
-  - Understanding dynamic route patterns
+- Creating routes with parameters like `/user/:id`
+- Understanding dynamic route patterns
 
-  <------------------>
+<------------------>
 
 - [ ] **Lesson 9:** Reading Parameters
 
-  - Using the `useParams()` hook
-  - Accessing URL parameters in components
+- Using the `useParams()` hook
+- Accessing URL parameters in components
 
-  <------------------>
+<------------------>
 
 - [ ] **Lesson 10:** Nested Routes
 
-  - Creating routes inside other routes
-  - Building hierarchical navigation
+- Creating routes inside other routes
+- Building hierarchical navigation
 
-  <=================================================================================================>
+<=================================================================================================>
 
 ### **Phase 4: Advanced Features** 🎯
 
 - [ ] **Lesson 11:** Programmatic Navigation
 
-  - Using the `useNavigate()` hook
-  - Redirecting users after form submissions
+- Using the `useNavigate()` hook
+- Redirecting users after form submissions
 
-  <------------------>
+<------------------>
 
 - [ ] **Lesson 12:** Route Protection
 
-  - Basic authentication routing
-  - Protecting pages that require login
+- Basic authentication routing
+- Protecting pages that require login
 
-  <------------------>
+<------------------>
 
 - [ ] **Lesson 13:** Layout Components
 
-  - Creating shared headers and footers
-  - Using Outlet for nested route content
+- Creating shared headers and footers
+- Using Outlet for nested route content
 
-  <=================================================================================================>
+<=================================================================================================>
 
 ### **Phase 5: Practice** 🏆
 
 - [ ] **Lesson 14:** Mini Project
 
-  - Building a complete multi-page app
-  - Putting all concepts together
+- Building a complete multi-page app
+- Putting all concepts together
 
-  <=================================================================================================>
+<=================================================================================================>
 
 ---
 
