@@ -524,10 +524,49 @@ export default Navigation;
 
 <------------------>
 
-- [ ] **Lesson 7:** 404 Pages
+- [X] **Lesson 7:** 404 Pages
 
-- Handling unknown routes with your NotFound.jsx
 - Using the catch-all route pattern
+
+1. Define a NotFound.jsx component that has some basic info about not being on the right page.
+2. Include a <Link> element to redirect back to `<Home>` component with the `to` prop set equal to `/`.
+3. The `path` for the NotFound Route is a `*`
+
+- Understanding the Catch-All Route:
+
+```jsx
+<Route path="*" element={<NotFound />} />
+```
+
+1. The `*` wildcard:
+   1.1 Matches ANY URL that does not match any previous routes.
+   1.2 Always placed at THE BOTTOM of the routes (order matters! === Routes are checked from Top to Bottom)
+   1.3 Act as the "fallback" route
+   1.4 Provides a better UX than a blank page with no info.
+
+2. Common 404 Page Features to consider including:
+   2.1 Clear error message (404 - Page Not Found)
+   2.2 Helpful explaination (What might have happened)
+   2.3 Navigation back to safety! (Home `<Link>`)
+   2.4 Search functionality (for larger sites)
+   2.5 Popular pages `<Link>'s` (for better UX)
+
+3. Advnced 404 Patterns:
+
+```jsx
+// Basic catch-all
+<Route path="*" element={<NotFound />} />
+
+// 404 with layout (future lesson!)
+<Route path="*" element={<Layout><NotFound /></Layout>} />
+
+// Different 404s for different sections
+<Routes>
+  <Route path="/blog/*" element={<BlogNotFound />} /> {/*Look at how the wildcard is constructed*/}
+  <Route path="*" element={<GeneralNotFound />} />
+</Routes>
+```
+
 
 <=================================================================================================>
 
