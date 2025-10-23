@@ -1,19 +1,58 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Navigation() {
+  //Active state styles:
+  const linkStyle = {
+    textDecoration: "none",
+    padding: "8px 16px",
+    borderRadius: "4px",
+  };
+
+  const activeStyle = {
+    ...linkStyle,
+    backgroundColor: "#007bff",
+    color: "white",
+    fontWeight: "bold",
+  };
+
+  const inactiveStyle = {
+    ...linkStyle,
+    color: "#007bff",
+  };
+
   return (
-    <ul style={{display: 'flex', gap: '1rem',listStyle: 'none'}}>
+    <ul style={{ display: "flex", gap: "1rem", listStyle: "none" }}>
       <li>
-        <Link to="/">Home</Link>
+        <NavLink
+          to="/"
+          style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <Link to="/about">About</Link>
+        <NavLink
+          to="/about"
+          style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+        >
+          About
+        </NavLink>
       </li>
       <li>
-        <Link to="/contact">Contact</Link>
+        <NavLink
+          to="/contact"
+          style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+        >
+          Contact
+        </NavLink>
       </li>
       <li>
-        <Link to="/signup">Signup</Link>
+        <NavLink
+          to="/signup"
+          style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+        >
+          Signup
+        </NavLink>
       </li>
     </ul>
   );

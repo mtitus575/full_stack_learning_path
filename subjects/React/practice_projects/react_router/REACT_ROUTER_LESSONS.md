@@ -373,10 +373,154 @@ export default App;
 
 <------------------>
 
-- [ ] **Lesson 6:** Active Links
+- [x] **Lesson 6:** Active Links
 
 - Using `<NavLink>` for navigation menus
-- Highlighting the current page automatically
+  -- The problem with <Link> is that users cannot tell which page they are on!
+
+1. The solution is to use <NavLink>: It works like link BUT automatically know when it is active (uses this with styling to highlight it).
+
+**Step 1:** Replace all the `<Link>` with `<NavLink>`
+**Step 2:** Make the active links look differnt by styling it.
+
+```jsx
+import { NavLink } from "react-router-dom";
+
+function Navigation() {
+  // Define styles for active and inactive links
+  const linkStyle = {
+    marginRight: "20px",
+    textDecoration: "none",
+    padding: "8px 16px",
+    borderRadius: "4px",
+  };
+
+  const activeStyle = {
+    ...linkStyle,
+    backgroundColor: "#007bff",
+    color: "white",
+    fontWeight: "bold",
+  };
+
+  const inactiveStyle = {
+    ...linkStyle,
+    color: "#007bff",
+  };
+
+  return (
+    <nav style={{ padding: "20px", borderBottom: "1px solid #ccc" }}>
+      <NavLink
+        to="/"
+        style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+      >
+        Home
+      </NavLink>
+      <NavLink
+        to="/about"
+        style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+      >
+        About
+      </NavLink>
+      <NavLink
+        to="/contact"
+        style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+      >
+        Contact
+      </NavLink>
+    </nav>
+  );
+}
+
+export default Navigation;
+```
+
+- Understanding how the `isActive` function.
+
+```jsx
+style={({ isActive }) => isActive ? activeStyle : inactiveStyle}
+```
+
+1. NavLink automatically passes an `isActive` boolean to your style function.
+2. isActive is `true` when the current URL matches the Navlink's `to` prop, and `false` if it does not match.
+3. You then return different styles based on the active state.
+
+- An alternative approach is to use `className` with this logic and a CSS file for the styling:
+
+```jsx
+import { NavLink } from "react-router-dom";
+import "./Navigation.css"; // This is the CSS File for the styles.
+
+function Navigation() {
+  return (
+    <nav className="navigation">
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          isActive ? "nav-link active" : "nav-link"
+        }
+      >
+        Home
+      </NavLink>
+      <NavLink
+        to="/about"
+        className={({ isActive }) =>
+          isActive ? "nav-link active" : "nav-link"
+        }
+      >
+        About
+      </NavLink>
+      <NavLink
+        to="/contact"
+        className={({ isActive }) =>
+          isActive ? "nav-link active" : "nav-link"
+        }
+      >
+        Contact
+      </NavLink>
+    </nav>
+  );
+}
+
+export default Navigation;
+```
+
+--The CSS file:
+
+```jsx
+.navigation {
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.nav-link {
+  margin-right: 20px;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  color: #007bff;
+}
+
+.nav-link.active {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+.nav-link:hover {
+  background-color: #e3f2fd;
+}
+```
+
+> > > Key Differences: Link vs NavLink
+
+```
+| Feature                       | `<Link>`      | `<NavLink>`      |
+| ----------------------------- | ------------  | ---------------- |
+| Basic navigation              | ✅           | ✅               |
+| Knows when active             | ❌           | ✅               |
+| Auto styling for active state | ❌           | ✅               |
+| Best for                      | Content links | Navigation menus |
+```
 
 <------------------>
 
