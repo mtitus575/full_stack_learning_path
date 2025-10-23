@@ -57,13 +57,31 @@ function Navigation() {
         </NavLink>
       </li>
 
-      <li>
-        {/*This is a DYNAMIC Link, using a Parameter */}
+      <li
+        style={{
+          display: "flex",
+          backgroundColor: "#1267",
+          borderRadius: 4,
+        }}
+      >
+        {/*This is a DYNAMIC Links, using a Parameters for different users */}
         <NavLink
-          to={`/user/${userId}`}
+          to={`/user/123`}
           style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
         >
-          User: {userId}
+          User: 123
+        </NavLink>
+        <NavLink
+          to={`/user/alice`}
+          style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+        >
+          User: Alice
+        </NavLink>
+        <NavLink
+          to={`/user/bob`}
+          style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+        >
+          User: Bob
         </NavLink>
       </li>
     </ul>
