@@ -9,6 +9,10 @@ import Signup from "./pages/Signup";
 import UserProfile from "./pages/UserProfile";
 import NotFound from "./pages/NotFound";
 
+import Dashboard from "./components/Dashboard";
+import DashboardProfile from "./components/DashBoardProfile";
+import DashboardSettings from "./components/DashboardSettings";
+
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +23,12 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/user/:id" element={<UserProfile />} />
+
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="profile" element={<DashboardProfile />} />
+          <Route path="settings" element={<DashboardSettings />} />
+        </Route>
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -84,6 +84,14 @@ function Navigation() {
           User: Bob
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/dashboard"
+          style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+        >
+          Dashboard
+        </NavLink>
+      </li>
     </ul>
   );
 }

@@ -571,7 +571,7 @@ export default Navigation;
 
 ### **Phase 3: Dynamic Routing** ⚡
 
-- [ ] **Lesson 8:** URL Parameters
+- [x] **Lesson 8:** URL Parameters
 
 - Creating routes with parameters like `/user/:id`
 
@@ -708,9 +708,9 @@ function UserPost() {
    -- Parameter names can be ANYTHING (:id, :username, :slug)
    -- Parameters are required (route will not match without them)
    -- Parameters can contain letters, numbers, hyphens, underscores.
-   <------------------>
+   <------------------------------------------------------------------------------->
 
-- [ ] **Lesson 9:** Reading Parameters
+- [x] **Lesson 9:** Reading Parameters
 
 - NOTE: Explained through examples by building out a UserProfile.jsx page with mock data.
 
@@ -810,12 +810,243 @@ if (!user) {
   -- Remember parameters are strings - convert if needed
   -- Use descriptive parameter names (:userId not :id)
   -- Consider URL-friendly formats (kebab-case, no spaces)
-  <------------------>
+
+  <-------------------------------------------------------------->
 
 - [ ] **Lesson 10:** Nested Routes
 
 - Creating routes inside other routes
-- Building hierarchical navigation
+  -- Understanding nested routes:
+
+1. What are nested routes?
+   -- Routes INSIDE other routes.
+   -- It creates a hierachical URL structure: `/dashboard/profile`, `/dashboard/settings`
+   -- Parent routes provide a shared layout (headers, sidebars, etc)
+   -- Child routes render INSIDE the parent routes `<Outlet />` component - whereever this is places in the parent component.
+
+2. Real-world Examples:
+   -- Dashboard apps: `/dashboard`,`/dashboard/profile`,`/dashboard/settings`, etc
+   -- E-commerce: `/shop`, `/shop/electronics`,`/shop/electronics/phones`,etc
+   -- Admin panels: `/admin`, `/admin/users`, `/admin/reports`
+
+- Building hierarchical navigation:
+
+1. **Step 1:** Create a parent layout component (the Dashboard):
+
+```jsx
+import { Link, Outlet } from "react-router-dom";
+
+function Dashboard() {
+  return (
+    <div>
+      <nav>
+        <h3>Dashboard</h3>
+        <section>
+          <Link to="/dashboard/profile">Profile</Link>
+          <Link to="/dashboard/settings">Settings</Link>
+          <Link to="/dashboard/stats">Statistics</Link>
+        </section>
+      </nav>
+      {/* This is the main content Area: */}
+      <main>
+        <h1>Welcome to your Dashboard</h1>
+        <p>Select an option from the sidebar to get started</p>
+
+        {/* This is where the child Routes with render*/}
+        <Outlet />
+      </main>
+    </div>
+  );
+}
+export default Dashboard;
+```
+
+2. **Step 2:** Create child Components for nested routes:
+
+```jsx
+// DashboardProfile.jsx
+function DashboardProfile() {
+  return (
+    <div>
+      <h2>User Profile</h2>
+      <div>
+        <p><strong>Name:</strong> John Doe</p>
+        <p><strong>Email:</strong> john@example.com</p>
+        <p><strong>Member Since:</strong> January 2023</p>
+        <button>Edit Profile</button>
+      </div>
+    </div>
+  );
+}
+export default DashboardProfile;
+
+// DashboardSettings.jsx
+function DashboardSettings() {
+  return (
+    <div>
+      <h2>Settings</h2>
+      <div>
+        <div>
+          <label>
+            <input type="checkbox"/>
+            Email notifications
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="checkbox"/>
+            Dark mode
+          </label>
+        </div>
+        <button>Save Settings</button>
+      </div>
+    </div>
+  );
+}
+
+export default DashboardSettings;
+
+```
+
+3. **Step 3:** Set up the nested routes in the App.jsx
+
+```jsx
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navigation from "./components/Navigation";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import UserProfile from "./pages/UserProfile";
+import Dashboard from "./pages/Dashboard";
+import DashboardProfile from "./pages/DashboardProfile";
+import DashboardSettings from "./pages/DashboardSettings";
+import NotFound from "./pages/NotFound";
+import "./App.css";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/user/:id" element={<UserProfile />} />
+
+        {/* Nested Routes */}
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="profile" element={<DashboardProfile />} />
+          <Route path="settings" element={<DashboardSettings />} />
+        </Route>
+
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+```
+
+4. **Step 4:** Add Dashboard link Navigation:
+
+```jsx
+// In Navigation.jsx, add:
+<NavLink
+  to="/dashboard"
+  style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+>
+  Dashboard
+</NavLink>
+```
+
+- Understanding the `<Outlet />` component:
+
+1. What is it?
+   -- A placeholder where the child routes will render.
+   -- MUST be places in the Parent COMPONENT.
+   -- Acts as a "window" into the nested routes.
+   -- Think of it as `children` for routes.
+
+2. How nested routes work:
+
+```jsx
+// URL: /dashboard/profile
+<Route path="/dashboard" element={<Dashboard />}>
+  <Route path="profile" element={<DashboardProfile />} />
+</Route>
+```
+
+-- When visiting `/dashboard/profile`:
+--> The Dashboard component renders (parent)
+--> The DashboardProfile renders INSIDE of the `<Outlet />` (child)
+--> BOTH components are visible at the same time.
+
+3. Key Rules for nesting:
+   -- Child routes use a relative `path` (no leading `/`)
+   -- `path="profile"` becomes `/dashboard/profile` automatically.
+   -- The Parent component ALWAYS renders
+   -- Order matters - put specific routes before general ones.
+
+- Common nested route patterns:
+
+```jsx
+// Basic nesting
+<Route path="/dashboard" element={<Dashboard />}>
+  <Route path="profile" element={<Profile />} />
+  <Route path="settings" element={<Settings />} />
+</Route>
+
+// Deep nesting
+<Route path="/admin" element={<AdminLayout />}>
+  <Route path="users" element={<UsersLayout />}>
+    <Route path=":userId" element={<UserDetail />} />
+    <Route path="new" element={<NewUser />} />
+  </Route>
+</Route>
+
+// Index routes (default child)
+<Route path="/dashboard" element={<Dashboard />}>
+  <Route index element={<DashboardHome />} /> {/* Shows at /dashboard */}
+  <Route path="profile" element={<Profile />} />
+</Route>
+```
+
+- Benefits of nested routes:
+  -- Shared layouts across related pages
+  -- Clean, hierarchical URLs
+  -- Maintains parent component state
+  -- Easy navigation between sections
+  -- Reusable layout components
+
+- Common mistakes:
+
+```jsx
+// ❌ Wrong: Child routes with leading slash
+<Route path="/dashboard" element={<Dashboard />}>
+  <Route path="/profile" element={<Profile />} /> {/* This won't work! */}
+</Route>
+
+// ✅ Correct: Relative child paths
+<Route path="/dashboard" element={<Dashboard />}>
+  <Route path="profile" element={<Profile />} /> {/* This works! */}
+</Route>
+
+// ❌ Wrong: Forgetting <Outlet />
+function Dashboard() {
+  return <div>Dashboard content</div>; // Child routes won't show!
+}
+
+// ✅ Correct: Including <Outlet />
+function Dashboard() {
+  return (
+    <div>
+      Dashboard content
+      <Outlet /> {/* Child routes render here */}
+    </div>
+  );
+}
+```
 
 <=================================================================================================>
 
