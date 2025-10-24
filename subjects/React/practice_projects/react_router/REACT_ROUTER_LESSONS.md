@@ -813,7 +813,7 @@ if (!user) {
 
   <-------------------------------------------------------------->
 
-- [ ] **Lesson 10:** Nested Routes
+- [x] **Lesson 10:** Nested Routes
 
 - Creating routes inside other routes
   -- Understanding nested routes:
@@ -1054,8 +1054,111 @@ function Dashboard() {
 
 - [ ] **Lesson 11:** Programmatic Navigation
 
+-Programmatic Navigation
+
+1. What is it?
+   -- Navigating users to different pages, through code, instead of clicking links.
+   -- It is useful after form submissions, login success, or based on conditions.
+   -- Achieved by using the `useNavigate()` hook from React Router
+2. When to use it?
+   -- After form submissions (redirect to success page)
+   -- After login/logout (redirect to dashboard/home page)
+   -- Based on user permissions (redirect unautherized users)
+   -- Error handling (redirect to error page)
+
 - Using the `useNavigate()` hook
-- Redirecting users after form submissions
+  **Step 1:** This hook returns a FUNCTION that let's you navigate programmatically.
+
+  ```jsx
+  import { useNavigate } from "react-router-dom";
+
+  function MyComponent() {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+      navigate("/about"); // Navigate to /about page
+    };
+
+    return <button onClick={handleClick}>Go to About</button>;
+  }
+  ```
+
+  **Step 2:** Use the function for different navigation options - attach these to DOM events, buttons or links, etc:
+
+  ```jsx
+  const NavObj = {
+    // Basic navigation
+    goHome: () => navigate("/"),
+
+    // Navigate with replace (doesn't add to history)
+    replaceWithHome: () => navigate("/", { replace: true }),
+
+    // Go back in history
+    goBack: () => navigate(-1),
+
+    // Go forward in history
+    goForward: () => navigate(1),
+
+    // Navigate with state data
+    goWithData: () =>
+      navigate("/dashboard", {
+        state: { fromSignup: true },
+      }),
+  };
+  ```
+
+- Common useNavigate() patterns:
+
+1. Form Submission Redirect:
+
+```jsx
+const handleSubmit = async (formData) => {
+  try {
+    await submitForm(formData);
+    navigate("/success");
+  } catch (error) {
+    navigate("/error");
+  }
+};
+```
+
+2. Conditional Navigation:
+
+```jsx
+const checkUserAccess = () => {
+  if (user.isLoggedIn) {
+    navigate("/dashboard");
+  } else {
+    navigate("/login");
+  }
+};
+```
+
+3. Navigation with Delay:
+
+```jsxconst handleSuccess = () => {
+  alert('Success!');
+  setTimeout(() => {
+    navigate('/home');
+  }, 2000); // Wait 2 seconds then navigate
+};
+```
+
+- Key Navigate Options:
+
+```jsx
+// Replace current entry in history (can't go back)
+navigate("/dashboard", { replace: true });
+
+// Pass data to the next page
+navigate("/dashboard", { state: { user: userData } });
+
+// Navigate relative to current location
+navigate("../profile"); // Go up one level then to profile
+
+// Navigate with query parameters
+navigate("/search?q=react");
+```
 
 <------------------>
 
