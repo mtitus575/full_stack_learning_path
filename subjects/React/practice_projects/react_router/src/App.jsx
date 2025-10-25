@@ -13,6 +13,8 @@ import Dashboard from "./components/Dashboard";
 import DashboardProfile from "./components/DashBoardProfile";
 import DashboardSettings from "./components/DashboardSettings";
 
+import Footer from "./components/Footer";
+
 function App() {
   return (
     <BrowserRouter>
@@ -31,6 +33,7 @@ function App() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

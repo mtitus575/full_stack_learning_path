@@ -5,14 +5,16 @@ function Signup() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  function handleSubmit() {
-    if(!username || ! email | !password){
-      alert('Enter details!')
-      return
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!username || !email || !password) {
+      alert("Enter details!");
+      return;
     }
-    navigate('/dashboard')
+    navigate("/dashboard", { replace: true });
   }
 
   return (

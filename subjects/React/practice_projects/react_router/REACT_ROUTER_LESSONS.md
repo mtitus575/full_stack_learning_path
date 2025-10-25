@@ -1136,10 +1136,11 @@ const checkUserAccess = () => {
 
 3. Navigation with Delay:
 
-```jsxconst handleSuccess = () => {
-  alert('Success!');
+```jsx
+const handleSuccess = () => {
+  alert("Success!");
   setTimeout(() => {
-    navigate('/home');
+    navigate("/home");
   }, 2000); // Wait 2 seconds then navigate
 };
 ```
