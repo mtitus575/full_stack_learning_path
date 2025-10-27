@@ -1,6 +1,13 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
-function Dashboard() {
+function Dashboard({ username, onLogout }) {
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    onLogout();
+    navigate("/");
+  }
+
   return (
     <div>
       <nav>
@@ -25,6 +32,7 @@ function Dashboard() {
         <section>
           <Outlet />
         </section>
+        <button onClick={handleLogout}>Logout</button>
       </main>
     </div>
   );

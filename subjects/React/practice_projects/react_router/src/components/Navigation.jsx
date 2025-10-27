@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-function Navigation() {
+function Navigation({ username, isLoggedIn, onLogout }) {
   //Active state styles:
   const linkStyle = {
     textDecoration: "none",
@@ -23,7 +23,14 @@ function Navigation() {
   const userId = "John Cena";
 
   return (
-    <ul style={{ display: "flex", gap: "1rem", listStyle: "none" }}>
+    <ul
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "1rem",
+        listStyle: "none",
+      }}
+    >
       <li>
         <NavLink
           to="/"
@@ -48,14 +55,16 @@ function Navigation() {
           Contact
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/signup"
-          style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
-        >
-          Signup
-        </NavLink>
-      </li>
+      {isLoggedIn && (
+        <li>
+          <NavLink
+            to="/signup"
+            style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+          >
+            Signup
+          </NavLink>
+        </li>
+      )}
 
       <li
         style={{
@@ -85,13 +94,24 @@ function Navigation() {
         </NavLink>
       </li>
       <li>
-        <NavLink
-          to="/dashboard"
-          style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
-        >
-          Dashboard
-        </NavLink>
+        {isLoggedIn ? (
+          <NavLink
+            to="/dashboard"
+            style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+          >
+            Dashboard
+          </NavLink>
+        ) : (
+          <NavLink
+            to="/login"
+            style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+          >
+            Login
+          </NavLink>
+        )}
       </li>
+
+      {isLoggedIn && <li>{username}</li>}
     </ul>
   );
 }
