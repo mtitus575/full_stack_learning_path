@@ -35,13 +35,22 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navigation
+      {/* <Navigation
         username={username}
         isLoggedIn={isLoggedIn}
         onLogout={handleLogout}
-      />
+      /> */}
       <Routes>
-        <Route path="/" element={<MainLayout />}>
+        <Route
+          path="/"
+          element={
+            <MainLayout
+              username={username}
+              isLoggedIn={isLoggedIn}
+              onLogout={handleLogout}
+            />
+          }
+        >
           <Route index element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

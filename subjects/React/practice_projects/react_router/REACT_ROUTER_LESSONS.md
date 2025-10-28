@@ -1052,7 +1052,7 @@ function Dashboard() {
 
 ### **Phase 4: Advanced Features** 🎯
 
-- [X] **Lesson 11:** Programmatic Navigation
+- [x] **Lesson 11:** Programmatic Navigation
 
 -Programmatic Navigation
 
@@ -1163,7 +1163,7 @@ navigate("/search?q=react");
 
 <------------------>
 
-- [X] **Lesson 12:** Route Protection
+- [x] **Lesson 12:** Route Protection
 - What is Route Protection?
   -- Preventing users from accessing certain pages without permission.
   -- Examples:
@@ -1337,7 +1337,7 @@ navigate("/search?q=react");
 
 <------------------>
 
-- [X] **Lesson 13:** Layout Components
+- [x] **Lesson 13:** Layout Components
 
 - What are layout Components?
   -- They are Components that provide a SHARED STRUCTURE across multiple PAGES.
@@ -1587,10 +1587,177 @@ function SidebarLayout() {
 
 - [ ] **Lesson 14:** Query Parameters & Search
 
-- Reading URL search parameters (?param=value)
-- Using useSearchParams() hook for filtering and search
-- Building search functionality with URL state
-- Understanding when to use query params vs route params
+- What are Query Parameters?
+  -- They are extra info added to URLs, after the `?` symbol (aka query string seperator)
+  -- FORMAT: `?key=value&key2=value2`
+  -- EXAMPLE: `/search?q=react&category=tutorials&page=2`
+  -- It is used for FILTERING, SORTING, and PAGINATION.
+
+- Why is is needed?
+  -- To keep the search/filter state in the URL, making links shareable.
+  -- To enable browser back/forward with search results.
+  -- To allow bookmarking of filtered pages
+  -- Creates a better UX than losing filters on refresh.
+
+- When to use Query Parameters?
+  -- To create search functionality (search terms)
+  -- Filtering lists (category, price, range, etc)
+  -- Pagination (page numbers)
+  -- Sorting options (date, name, price)
+  -- Any temporary state that should be shareable.
+
+- How does it work?
+  -- Read current URL parameters with `useSearchParams()`
+  -- Update the parameters to change the URL
+  -- REACT automatically re-renders when parameters change.
+
+- The **STEPS** to Implement it:
+
+1. Basic Query Parameter Reading:
+   -- Use the `useSearchParams()` _hook_ to read the URL parameters.
+   ==> This hook returns and array with a object to `get` the params and a setter function to update it.
+   -- Extract specific parameter values from the URL
+   -- Handle missing or empty param gracefully.
+
+2. Updating Query Parameters:
+   -- Use the `setSearchParams()` _function_ to update the URL.
+   -- Understand how to ADD, MODIFY, REMOVE params.
+   -- Keep existing parameters while updating others.
+
+3. Building Search Functionality:
+   -- Create a search form that updates URL params.
+   -- Filter data based on query params.
+   -- Maintain search state across page navigation.
+
+4. Multiple Parameters and Filters:
+   -- Handle multiplee filter options simultaneously
+   -- Combine search terms with category filters
+   -- Clear individual filters or all filters at once.
+
+- **Code Implementation**
+
+1. Basic Query Params reading:
+
+```jsx
+// Create a SearchPage.jsx file (This is a page, not component)
+import { useSearchParams } from "react-router-dom";
+
+function SearchPage() {
+  const [searchParams] = useSearchParams();
+
+  //Reading individual params:
+  const query = searchParams.get("q") || "";
+  const category = searchParams.get("category") || "";
+  const page = searchParams.get("page") || "";
+
+  return (
+    <div>
+      <h1>Search Results</h1>
+      <div>
+        <p>Search Query: {query || "No search query available"}</p>
+        <p>Category: {category}</p>
+        <p>Page: {page}</p>
+      </div>
+      <p>Current URL: {window.location.search}</p>
+    </div>
+  );
+}
+export default SearchPage;
+```
+
+2. Updating Query Parameters (little more advanced version)
+
+```jsx
+//a SearchPage.jsx Page with update functionality:
+import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
+
+function SearchPage() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Read current parameters:
+  const query = searchParams.get("q") || "";
+  const category = searchParams.get("category") || "";
+
+  // Handle search form submission:
+  function handleSearch(e) {
+    e.preventDefault();
+
+    //Update the URL with the new search term:
+    setSearchParams({
+      q: searchTerm,
+      category: catergory, //keeps existing category retrieved above
+    });
+  }
+
+  // Handle category change:
+  function handleCategoryChange(newCat) {
+    setSearchParams({
+      q: query, //Keeps existing query retrieved above.
+      category: newCat,
+    });
+  }
+
+  //Clear all filters:
+  function clearFilters() {
+    setSearchParams({}); //an EMPTY object clears all parameters
+    setSearchTerm("");
+  }
+
+  return (
+    <div>
+      <h1>Search & Filter</h1>
+      {/*The Search Form*/}
+      <form>
+        <input
+          type='text'
+          placeholder='Search products...'
+          value={searchTerm}
+          onChange={({target}=> setSearchTerm(target.value))}
+        />
+        <button type='submit'>Search</button>
+      </form>
+
+      {/*Category Filters*/}
+      <div>
+        Category: {['all', 'electronics', 'clothing', 'books'].map((category)=> {
+          return (
+            <button key={category} onClick={()=>handleCategoryChange(category)}>
+              {category.charAt(0).toUpperCase() + category.slice(1)}
+            </button>
+          )
+        })}
+      </div>
+
+      {/*Clear button*/}
+      <button onClick={clearFilters}>Clear All Filters</button>
+
+      {/*Display the current State*/}
+      <div>
+        <h3>Current Filters:</h3>
+         <p>Search Query: {query || "No search query available"}</p>
+        <p>Category: {category}</p>
+        <p>Full URL: {windows.location.href}</p>
+      </div>
+    </div>
+  )
+}
+export default SearchPage;
+```
+
+3. Building a Product Search Page with Real Data (Advanced version):
+
+```jsx
+//ProductSearch.jsx - Complete search functionality
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+
+function ProductSearch() {
+  //CONTINUE FROM HERE....
+}
+export default ProductSearch;
+```
 
 <------------------>
 
