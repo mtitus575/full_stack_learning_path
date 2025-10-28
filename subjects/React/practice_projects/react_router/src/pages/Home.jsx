@@ -1,8 +1,8 @@
 function Home() {
   return (
     <div>
-      <h1>Welcome to my website!</h1>
-      <p>This is the home page.</p>
+      <h2>Welcome to the Home page.</h2>
+      <p>This is where the main content lives style</p>
     </div>
   );
 }

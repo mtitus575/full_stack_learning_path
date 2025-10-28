@@ -1052,7 +1052,7 @@ function Dashboard() {
 
 ### **Phase 4: Advanced Features** 🎯
 
-- [ ] **Lesson 11:** Programmatic Navigation
+- [X] **Lesson 11:** Programmatic Navigation
 
 -Programmatic Navigation
 
@@ -1163,7 +1163,7 @@ navigate("/search?q=react");
 
 <------------------>
 
-- [ ] **Lesson 12:** Route Protection
+- [X] **Lesson 12:** Route Protection
 - What is Route Protection?
   -- Preventing users from accessing certain pages without permission.
   -- Examples:
@@ -1337,7 +1337,7 @@ navigate("/search?q=react");
 
 <------------------>
 
-- [ ] **Lesson 13:** Layout Components
+- [X] **Lesson 13:** Layout Components
 
 - What are layout Components?
   -- They are Components that provide a SHARED STRUCTURE across multiple PAGES.

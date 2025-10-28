@@ -55,7 +55,7 @@ function Navigation({ username, isLoggedIn, onLogout }) {
           Contact
         </NavLink>
       </li>
-      {isLoggedIn && (
+      {!isLoggedIn && (
         <li>
           <NavLink
             to="/signup"
@@ -74,7 +74,7 @@ function Navigation({ username, isLoggedIn, onLogout }) {
         }}
       >
         {/*This is a DYNAMIC Links, using a Parameters for different users */}
-        <NavLink
+        {/* <NavLink
           to={`/user/123`}
           style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
         >
@@ -91,7 +91,7 @@ function Navigation({ username, isLoggedIn, onLogout }) {
           style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
         >
           User: Bob
-        </NavLink>
+        </NavLink> */}
       </li>
       <li>
         {isLoggedIn ? (
