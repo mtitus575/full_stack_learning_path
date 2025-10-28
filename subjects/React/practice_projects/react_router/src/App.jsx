@@ -68,11 +68,6 @@ function App() {
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
         )}
 
-        {/* // <Route path="/dashboard" element={<Dashboard />}>
-        //   <Route path="profile" element={<DashboardProfile />} />
-        //   <Route path="settings" element={<DashboardSettings />} />
-        // </Route> */}
-
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
