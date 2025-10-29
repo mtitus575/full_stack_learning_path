@@ -1585,7 +1585,7 @@ function SidebarLayout() {
 
 <------------------>
 
-- [ ] **Lesson 14:** Query Parameters & Search
+- [x] **Lesson 14:** Query Parameters & Search
 
 - What are Query Parameters?
   -- They are extra info added to URLs, after the `?` symbol (aka query string seperator)
@@ -1754,19 +1754,541 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 function ProductSearch() {
-  //CONTINUE FROM HERE....
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchTerm, setSearchTerm] = useState(searchParams.get("q") || "");
+
+  //Mock data (in real app, data comes from API)
+  const allProducts = [
+    { id: 1, name: "iPhone 14", category: "electronics", price: 999 },
+    { id: 2, name: "React Book", category: "books", price: 29 },
+    { id: 3, name: "Blue Jeans", category: "clothing", price: 79 },
+    { id: 4, name: "Laptop", category: "electronics", price: 1299 },
+    { id: 5, name: "JavaScript Guide", category: "books", price: 39 },
+    { id: 6, name: "Red Shirt", category: "clothing", price: 25 },
+  ];
+
+  //Get current filter values from the URL:
+  const q = searchParam.get("q") || "";
+  const category = searchParam.get("category") || "all";
+  const sortBy = searchParam.get("sort") || "name";
+
+  //Filter products based on URL:
+  const filteredProducts = allProducts
+    .filter((product) => {
+      const matchesSearch =
+        query === "" ||
+        product.name.toLowerCase().includes(query.toLowerCase());
+      const matchesCategory =
+        category === "all" || product.category === category;
+
+      return matchesSearch && matchesCategory;
+    })
+    .sort((a, b) => {
+      if (sortBy === "price") {
+        return a.price - b.price;
+      }
+      if (sortBy === "name") {
+        return a.name.localeCompare(b.name);
+      }
+      return 0;
+    });
+
+  //Update the searchTerm when the URL changes:
+  useEffect(() => {
+    setSearchTerm(searchParams.get("q") || "");
+  }, [searchParams]);
+
+  //Handle search form submisson:
+  function handleSearch(e) {
+    e.preventDefault();
+    updateParams({ q: searchTerm });
+  }
+
+  //Helper function to update params without losing existing ones
+  function updateParams(newParams) {
+    const current = Object.fromEntries(searchParams);
+    setSearchParams({ ...current, ...newParams });
+  }
+
+  //Clear search but keep other filters:
+  function clearSearch() {
+    const current = Object.fromEntries(SearchParams);
+    delete current.q;
+    setSearchParams(current);
+    setSearchTerm("");
+  }
+
+  //The Page JSX:
+
+  return (
+    <div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
+      <h1>Product Search 🛍️</h1>
+
+      {/* Search Bar */}
+      <form onSubmit={handleSearch} style={{ marginBottom: "20px" }}>
+        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search products..."
+            style={{
+              flex: 1,
+              padding: "10px",
+              borderRadius: "4px",
+              border: "1px solid #ccc",
+            }}
+          />
+          <button
+            type="submit"
+            style={{
+              padding: "10px 20px",
+              backgroundColor: "#007bff",
+              color: "white",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer",
+            }}
+          >
+            Search
+          </button>
+          {query && (
+            <button
+              type="button"
+              onClick={clearSearch}
+              style={{
+                padding: "10px 15px",
+                backgroundColor: "#6c757d",
+                color: "white",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+              }}
+            >
+              Clear
+            </button>
+          )}
+        </div>
+      </form>
+
+      {/* Filters */}
+      <div
+        style={{
+          display: "flex",
+          gap: "20px",
+          marginBottom: "20px",
+          padding: "15px",
+          backgroundColor: "#f8f9fa",
+          borderRadius: "5px",
+        }}
+      >
+        {/* Category Filter */}
+        <div>
+          <strong>Category: </strong>
+          <select
+            value={category}
+            onChange={(e) => updateParams({ category: e.target.value })}
+            style={{ padding: "5px", marginLeft: "5px" }}
+          >
+            <option value="all">All Categories</option>
+            <option value="electronics">Electronics</option>
+            <option value="clothing">Clothing</option>
+            <option value="books">Books</option>
+          </select>
+        </div>
+
+        {/* Sort Filter */}
+        <div>
+          <strong>Sort by: </strong>
+          <select
+            value={sortBy}
+            onChange={(e) => updateParams({ sort: e.target.value })}
+            style={{ padding: "5px", marginLeft: "5px" }}
+          >
+            <option value="name">Name</option>
+            <option value="price">Price</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Results */}
+      <div>
+        <h3>Results ({filteredProducts.length} found)</h3>
+        {filteredProducts.length === 0 ? (
+          <p
+            style={{
+              textAlign: "center",
+              color: "#6c757d",
+              fontSize: "18px",
+              padding: "40px",
+            }}
+          >
+            No products found. Try adjusting your search or filters.
+          </p>
+        ) : (
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+              gap: "15px",
+            }}
+          >
+            {filteredProducts.map((product) => (
+              <div
+                key={product.id}
+                style={{
+                  border: "1px solid #ddd",
+                  borderRadius: "5px",
+                  padding: "15px",
+                  backgroundColor: "white",
+                }}
+              >
+                <h4>{product.name}</h4>
+                <p>
+                  <strong>Category:</strong> {product.category}
+                </p>
+                <p>
+                  <strong>Price:</strong> ${product.price}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Current URL for debugging */}
+      <div
+        style={{
+          marginTop: "30px",
+          padding: "10px",
+          backgroundColor: "#e9ecef",
+          borderRadius: "5px",
+          fontSize: "12px",
+        }}
+      >
+        <strong>Current URL:</strong> {window.location.href}
+      </div>
+    </div>
+  );
 }
 export default ProductSearch;
+```
+
+- Common Query Parameter Patterns:
+
+1. Preserving Existing Parameters:
+
+```jsx
+const updateParam = (newParams) => {
+  const current = Object.fromEntries(SearchParams);
+  setSearchParams({ ...current, ...newParams });
+};
+```
+
+2. Removing Parameters:
+
+```jsx
+const removeParam = (paramName) => {
+  const current = Object.fromEntries(searchParams);
+  delete current[paramName];
+  setSearchParams(current);
+};
+```
+
+3. Default values: Provides fallback data for missing params
+
+```jsx
+const page = searchParams.get("page") || "1";
+const limit = searchParams.get("limit") || "10";
 ```
 
 <------------------>
 
 - [ ] **Lesson 15:** Index Routes & Advanced Patterns
+- What are Index Routes?
+  -- They are special routes that show DEFAULT content when visiting parent routes
+  -- They render when the URL matches the parent route's URL
+  -- They're like the "homepage" of a nested route section.
+  -- No additional path is needed: It used `index` prop, instead of the `path` prop.
 
-- Understanding index routes for default content
-- Setting up index routes in nested structures
-- Location state for passing data between routes
-- Route organization best practices
+- Why are Index Routes needed?
+  -- They provide default content when a parent route is visited (only show on `/dashboard `, not on `/dashboard/profile`)
+  -- To avoid showing empty pages with just navigation.
+  -- Meaningful default pages creates a better UX
+  -- Show landing pages for route sections
+
+- When to use Index Routes:
+  -- On landing pages:
+  --- Dashboard (`/dashboard`) = show overview:
+  --- Category homepage (`/products`) = show featured products
+  --- Section intros (`/admin`) = show admin welcome
+  --- Any time default content is needed for a parent route.
+
+- How it works:
+  -- Use `<Route index element={<Component />} />`, instead of `path`
+  -- Renders inside the parent `<Oulet/>` when the parent URL is visited
+  -- Only shows if there is no child route match in the URL
+
+- Theory Steps to Implementing it:
+
+  1. Basic index route concept:
+     -- `path` vs `index` routes
+     -- Check how index routes provide default content
+     -- When do index routes render vs regular routes.
+
+  2. Implementing Index Routes:
+     -- Add index route to existing route structure
+     -- Make meaningful default content
+     -- Test index route behaviour in the browser
+
+  3. Location State (passing Data between Routes)
+     -- Use `navigate()` with state to pass data securely
+     -- Read location state in destination components
+     -- Handle missing or undefined state well.
+
+  4. Advanced Route Organization
+     -- Organize for maintainability
+     -- Handle complex nested structures
+     -- Best practice structures for routes
+
+  - Code Implementation for _Theory Steps_:
+
+  1. Understangin Index vs Regular Routes:
+     -- Regular Routes:
+
+  ```jsx
+  // When you visit /dashboard - shows empty content page!
+  <Route path="/dashboard" element={<Dashboard />}>
+    <Route path="profile" element={<Profile />} />
+    <Route path="setting" element={<Settings />} />
+  </Route>;
+
+  // Dashboard.jsx shows navigation but empty main area
+  function Dashboard() {
+    return (
+      <div>
+        <nav>Dashboard Navigation</nav>
+        <main>
+          <Outlet /> {/* Empty when visiting /dashboard */}
+        </main>
+      </div>
+    );
+  }
+  ```
+
+  -- Index Routes Version:
+
+  ```jsx
+  // When you visit /dashboard - shows welcome content!
+  <Route path="/dashboard" element={<Dashboard />}>
+    <Route index element={<DashboardHome />} /> {/* Shows at /dashboard */}
+    <Route path="profile" element={<Profile />} />
+    <Route path="settings" element={<Settings />} />
+  </Route>
+  ```
+
+  2. Create an Index Route Component
+     -- This is the component used above:
+
+  ```jsx
+  function DashboardHome() {
+    //This is the index route.
+    //content to show on dashboard
+    {
+      /*Add things like stats, quick tip or instructions*/
+    }
+  }
+  export default DashboardHome;
+  ```
+
+  3. Update the App.jsx to include the index routes:
+  4. Location State - Passing Data between Routes:
+     -- Sending data when navigating:
+
+     ```jsx
+      // Login.jsx - Sending user data to dashboard
+      import { useState } from 'react';
+      import { useNavigate } from 'react-router-dom';
+
+      function Login() {
+        const [username, setUsername] = useState('');
+        const [password, setPassword] = useState('');
+        const navigate = useNavigate();
+
+        const handleSubmit = (e) => {
+          e.preventDefault();
+
+          if (username === 'admin' && password === 'password') {
+            // Pass user data to dashboard using state
+            // navigate takes 2 arguments - a path and an object.
+            navigate('/dashboard', {
+              state: {
+                username: username,
+                loginTime: new Date().toLocaleString(),
+                isFirstLogin: true,
+                welcomeMessage: `Welcome back, ${username}!`
+              }
+            });
+          } else {
+            alert('Invalid credentials!');
+          }
+        };
+
+        return (
+          //The JSX code goes here...
+        )
+      }
+     ```
+
+     -- Receiving data in the destination component:
+
+     ```jsx
+      // DashboardHome.jsx - Reading location state
+      import { useLocation } from 'react-router-dom';
+
+      function DashboardHome() {
+        const location = useLocation();
+
+        // Safely access the state data (it might not exist)
+        const userData = location.state || {};
+        const { username, loginTime, isFirstLogin, welcomeMessage } = userData;
+
+        return (
+          //JSX goes here and you can use the state as needed...
+        )
+      }
+
+     ```
+
+     5. Advanced Route Organization Example:
+
+  ```jsx
+  // Better organized App.jsx for larger apps
+  function App() {
+    return (
+      <BrowserRouter>
+        <Routes>
+          {/* Public routes with main layout */}
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} /> {/* Shows at / */}
+            <Route path="about" element={<About />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="search" element={<ProductSearch />} />
+          </Route>
+
+          {/* Auth routes with special layout */}
+          <Route path="/auth" element={<AuthLayout />}>
+            <Route index element={<AuthHome />} />{" "}
+            {/* Shows auth options at /auth */}
+            <Route path="login" element={<Login />} /> {/* Shows at /auth/login */}
+            <Route path="signup" element={<Signup />} />{" "}
+            {/* Shows at /auth/signup */}
+            <Route path="forgot-password" element={<ForgotPassword />} />
+          </Route>
+
+          {/* Protected dashboard routes */}
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route index element={<DashboardHome />} />{" "}
+            {/* Shows at /dashboard */}
+            <Route path="profile" element={<DashboardProfile />} />
+            <Route path="settings" element={<DashboardSettings />} />
+            {/* Nested admin routes inside dashboard */}
+            <Route path="admin" element={<AdminLayout />}>
+              <Route index element={<AdminHome />} />{" "}
+              {/* Shows at /dashboard/admin */}
+              <Route path="users" element={<UserManagement />} />
+              <Route path="reports" element={<Reports />} />
+            </Route>
+          </Route>
+
+          {/* 404 for all unmatched routes */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    );
+  }
+  ```
+
+**Understanding Location State**
+
+- When to use location state?
+  -- for _sensitive data_ that should not be in the URL (passwords, tokens, etc)
+  -- for temporary messages (success notification, welcome messages)
+  -- User preferences for the current session
+  -- for _form data_ when redirecting AFTER submission
+
+  1. Location state vs URL parameters:
+
+```jsx
+// URL Parameters (visible, shareable, bookmarkable)
+navigate("/user/123"); // Shows in URL: /user/123
+
+// Location State (hidden, temporary, not shareable)
+navigate("/dashboard", {
+  state: { welcomeMessage: "Login successful!" },
+}); // URL just shows: /dashboard
+```
+
+2. Best practices for Location state:
+
+```jsx
+// ✅ Always check if state exists (user might navigate directly)
+const userData = location.state || {};
+const { username } = userData;
+
+// ✅ Provide fallbacks for missing data
+const welcomeMessage = location.state?.welcomeMessage || "Welcome!";
+
+// ✅ Handle missing state gracefully
+if (!location.state) {
+  return <div>Please log in to access this page.</div>;
+}
+```
+
+- Common Patterns & Best Practices:
+
+1. Multiple Index Routes:
+
+```jsx
+// Each nested section can have its own index
+<Route path="/admin" element={<AdminLayout />}>
+  <Route index element={<AdminDashboard />} /> {/* Shows at /admin */}
+  <Route path="users" element={<UserManagement />}>
+    <Route index element={<UserList />} /> {/* Shows at /admin/users */}
+    <Route path=":id" element={<UserDetail />} />
+  </Route>
+</Route>
+```
+
+2. Conditional Index Content:
+
+```jsx
+function DashboardHome() {
+  const location = useLocation();
+  const isFirstVisit = location.state?.isFirstLogin;
+
+  return (
+    <div>
+      {isFirstVisit ? (
+        <WelcomeWizard /> // Show setup wizard for new users
+      ) : (
+        <RegularDashboard /> // Show normal dashboard
+      )}
+    </div>
+  );
+}
+```
+
+3. Redirecting Index Routes:
+
+```jsx
+// Sometimes you want to redirect the index to a specific child
+<Route path="/dashboard" element={<Dashboard />}>
+  <Route index element={<Navigate to="overview" replace />} />
+  <Route path="overview" element={<DashboardOverview />} />
+  <Route path="profile" element={<Profile />} />
+</Route>
+```
 
 <=================================================================================================>
 

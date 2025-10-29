@@ -17,6 +17,7 @@ import DashboardProfile from "./components/DashBoardProfile";
 import DashboardSettings from "./components/DashboardSettings";
 
 import Footer from "./components/Footer";
+import ProductSearch from "./components/ProductSearch";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,15 +32,10 @@ function App() {
     setIsLoggedIn(false);
     setUsername("");
   }
-  console.log(isLoggedIn, username);
 
   return (
     <BrowserRouter>
-      {/* <Navigation
-        username={username}
-        isLoggedIn={isLoggedIn}
-        onLogout={handleLogout}
-      /> */}
+    
       <Routes>
         <Route
           path="/"
@@ -56,6 +52,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/user/:id" element={<UserProfile />} />
+          <Route path="/search" element={<ProductSearch />} />
         </Route>
 
         {/* My Protected Routes */}

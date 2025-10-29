@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Navigation from "./Navigation";
+import ProductSearch from "./ProductSearch";
 
 function MainLayout({ username, isLoggedIn, onLogout }) {
   return (

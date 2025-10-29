@@ -33,6 +33,14 @@ function Navigation({ username, isLoggedIn, onLogout }) {
     >
       <li>
         <NavLink
+          to="/search"
+          style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
+        >
+          Search
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
           to="/"
           style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
         >
