@@ -560,7 +560,7 @@ ProductCard.defaultProps = {
    -- You can also set default props, after the component, for any optional items.
 
 3. Syntax:
-import PropTypes from 'prop-types'
+   import PropTypes from 'prop-types'
 
 function ComponentName({name, age, isActive}){
 return <div>{name} is {age} years old.</div>
@@ -694,21 +694,21 @@ Scenario B: Using unique ID as key
 ```jsx
 // Counter with increment/decrement
 const [count, setCount] = useState(0);
-const increment = () => setCount(_________);
-const decrement = () => setCount(_________);
+const increment = () => setCount((prev) => prev + 1);
+const decrement = () => setCount((prev) => prev - 1);
 
 // Toggle boolean
 const [isOpen, setIsOpen] = useState(false);
-const toggle = () => setIsOpen(_________);
+const toggle = () => setIsOpen((prev) => !prev);
 
 // Array operations
 const [items, setItems] = useState([]);
-const addItem = (item) => setItems(_________);
-const removeItem = (id) => setItems(_________);
+const addItem = (item) => setItems((prev) => [...prev, item]);
+const removeItem = (id) => setItems((prev) => prev.filter(id));
 
 // Object updates
 const [user, setUser] = useState({ name: "", email: "" });
-const updateName = (name) => setUser(_________);
+const updateName = (name) => setUser({ name, email });
 ```
 
 ### Q28. useEffect Dependencies
@@ -720,29 +720,33 @@ const updateName = (name) => setUser(_________);
 useEffect(() => {
   console.log("Effect A runs");
 });
+// answer = Effect A runs each time the component renders or re-renders.
 
 // Effect B
 useEffect(() => {
   console.log("Effect B runs");
 }, []);
+// answer = Effect B runs on mount only.
 
 // Effect C
 useEffect(() => {
   console.log("Effect C runs");
 }, [count]);
+// answer = Effect C runs each time the count state is updated and on mounting
 
 // Effect D
 useEffect(() => {
   console.log("Effect D runs");
 }, [count, user.name]);
+// answer = Effects D runs on mount and whenever any of the dependency variables changes
 ```
 
 **When does each effect run?**
 
-- Effect A: \***\*\_\*\***
-- Effect B: \***\*\_\*\***
-- Effect C: \***\*\_\*\***
-- Effect D: \***\*\_\*\***
+- Effect A: \***\*\On render and each re-render\*\***
+- Effect B: \***\*\Runs on mount only\*\***
+- Effect C: \***\*\runs on mount and each time the count variable updates\*\***
+- Effect D: \***\*\runs on mount and whenever any of the dependency variables changes\*\***
 
 ### Q29. useEffect Cleanup
 
@@ -755,7 +759,7 @@ useEffect(() => {
     setCount((c) => c + 1);
   }, 1000);
 
-  return _________; // Add cleanup
+  return () => clearInterval(timer); // Add cleanup
 }, []);
 
 // Event listener effect
@@ -763,7 +767,7 @@ useEffect(() => {
   const handleScroll = () => setScrollY(window.scrollY);
   window.addEventListener("scroll", handleScroll);
 
-  return _________; // Add cleanup
+  return () => window.removeEventListener("scroll", handleScroll); // Add cleanup
 }, []);
 
 // Fetch with abort controller
@@ -774,7 +778,7 @@ useEffect(() => {
     .then((res) => res.json())
     .then(setData);
 
-  return _________; // Add cleanup
+  return () => signal.abort(); // Add cleanup
 }, []);
 ```
 
@@ -782,11 +786,11 @@ useEffect(() => {
 
 **Rate these practices as Good ✅ or Bad ❌:**
 
-- [ ] Missing dependencies in dependency array
-- [ ] Using async function directly in useEffect
-- [ ] Multiple useEffect hooks for different concerns
-- [ ] Updating state in useEffect without dependencies
-- [ ] Using empty dependency array for one-time effects
+- [bad] Missing dependencies in dependency array
+- [good] Using async function directly in useEffect
+- [good] Multiple useEffect hooks for different concerns
+- [bad] Updating state in useEffect without dependencies
+- [good] Using empty dependency array for one-time effects
 
 ### Q31. State Batching
 
@@ -806,15 +810,15 @@ function Counter() {
 }
 ```
 
-**After clicking once, count will be: \*\***\_**\*\***
+**After clicking once, count will be: \*\*\*1\*\***
 
 **How would you fix this to increment by 3?**
 
 ```jsx
 const handleClick = () => {
-  _________;
-  _________;
-  _________;
+  setCount((prev) => prev + 1);
+  setCount((prev) => prev + 1);
+  setCount((prev) => prev + 1);
 };
 ```
 
@@ -828,25 +832,25 @@ function ShoppingCart() {
 
   const addItem = (product) => {
     setCart((prevCart) => ({
-      items: _________,
-      total: _________,
+      items: [...prevCart.items, product.item],
+      total: prevCart.total + product.price,
     }));
   };
 
   const removeItem = (productId) => {
     setCart((prevCart) => {
-      const newItems = _________;
+      const newItems = prevCart.filter(productId);
       return {
         items: newItems,
-        total: _________,
+        total: newItems.price.reduce((a, b) => a + b),
       };
     });
   };
 
   const updateQuantity = (productId, quantity) => {
     setCart((prevCart) => ({
-      items: _________,
-      total: _________,
+      items: [...prevCart.items, (productId * quantity)],
+      total: prevCart.total + (productId.price * quantity),
     }));
   };
 }
@@ -861,7 +865,7 @@ function ShoppingCart() {
 const [user, setUser] = useState({});
 useEffect(() => {
   setUser({ ...user, lastSeen: Date.now() });
-}, [user]); // Problem? _________
+}, [user]); // Problem? runs every time the user is updated
 
 // Effect 2
 const [data, setData] = useState([]);
@@ -950,7 +954,7 @@ function Component({ condition }) {
 }
 ```
 
-**Violations:** \***\*\_\*\***
+**Violations:** \***\*\D - state must be created at the start of the component and not within helper functions as it is not available outside the helper function's scope\*\***
 
 ---
 

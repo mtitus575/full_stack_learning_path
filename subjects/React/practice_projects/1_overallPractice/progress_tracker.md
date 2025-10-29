@@ -6,11 +6,11 @@ Use this checklist to track your progress through the React Practice Curriculum.
 
 ### Theory Questions Assessment
 
-- [X] **Q1-5: Virtual DOM** - Understanding React's core optimization
-- [X] **Q6-13: JSX** - Mastering React's syntax and expressions
-- [ ] **Q14-20: Components** - Functional components and state management
-- [ ] **Q21-26: Component Interaction** - Props, state lifting, communication
-- [ ] **Q27-35: Hooks** - useState and useEffect mastery
+- [x] **Q1-5: Virtual DOM** - Understanding React's core optimization
+- [x] **Q6-13: JSX** - Mastering React's syntax and expressions
+- [x] **Q14-20: Components** - Functional components and state management
+- [x] **Q21-26: Component Interaction** - Props, state lifting, communication
+- [x] **Q27-35: Hooks** - useState and useEffect mastery
 
 ### Theory Score: \_\_\_/35
 
